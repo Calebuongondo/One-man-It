@@ -67,3 +67,99 @@
     .om-why { margin:0 18px 70px; padding:40px 24px; border-radius:34px; }.om-why>p { font-size:17px; }.om-why li { padding:14px 16px; font-size:15px; }.om-cta { margin:0 18px 55px; padding:48px 22px; border-radius:34px; }.om-cta p { font-size:17px; }.om-cta__notes { flex-direction:column; gap:8px; }.om-footer { padding:30px 24px 20px; }.om-footer__risk strong { font-size:21px; }.om-footer__bottom { flex-direction:column; gap:7px; }
 }
 @media (max-width:370px) { .om-landing__brand { font-size:17px; }.om-button { padding-inline:10px; }.om-landing__header-actions { gap:5px; }.om-stats small { font-size:9px; } }
+
+
+/* Typography refinement: consistent, restrained scale across desktop and mobile. */
+.om-landing {
+    font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.om-landing__brand { font-size: 21px; letter-spacing: -.7px; }
+.om-button { font-size: 13px !important; font-weight: 700 !important; }
+.om-hero { padding-top: 38px; }
+.om-hero__greeting { font-size: 16px; margin-bottom: 16px; }
+.om-hero h1 { max-width: 780px; font-size: clamp(29px, 4vw, 40px); line-height: 1.22; letter-spacing: -1px; }
+.om-hero__copy { max-width: 700px; font-size: 16px; line-height: 1.7; }
+.om-highlight-card { max-width: 640px; min-height: 225px; padding-top: 48px; }
+.om-highlight-card__avatar { width: 88px; height: 88px; top: -44px; font-size: 20px; }
+.om-highlight-card p { font-size: 15px; line-height: 1.7; }
+.om-highlight-card strong { font-size: 17px; }
+.om-highlight-card span { font-size: 14px; }
+.om-highlight-card__stars { font-size: 19px; }
+.om-stats span { width: 78px; height: 78px; font-size: 16px; }
+.om-stats small { font-size: 11px; }
+.om-section { padding-top: 42px; }
+.om-section__eyebrow { font-size: 11px; letter-spacing: 1.5px; }
+.om-section h2, .om-why h2, .om-cta h2, .om-referral h2 {
+    max-width: 760px; font-size: clamp(25px, 3.2vw, 32px); line-height: 1.25; letter-spacing: -.6px;
+}
+.om-section__lead, .om-community > p, .om-why > p, .om-cta p, .om-referral p {
+    font-size: 15px; line-height: 1.75;
+}
+.om-feature-card { min-height: 245px; padding: 28px; }
+.om-feature-card__icon { width: 68px; height: 68px; border-radius: 20px; font-size: 32px; }
+.om-feature-card h3 { font-size: 19px; line-height: 1.4; }
+.om-feature-card > b { margin-bottom: 12px; font-size: 15px; }
+.om-feature-card p { font-size: 15px; line-height: 1.7; }
+.om-referral { padding: 30px; }
+.om-referral__eyebrow { font-size: 13px; }
+.om-button--referral { min-height: 54px; font-size: 15px !important; }
+.om-community { padding-top: 58px; padding-bottom: 66px; }
+.om-community h2 { font-size: clamp(25px, 3.2vw, 32px); line-height: 1.25; letter-spacing: -.6px; }
+.om-community__pills span { font-size: 13px; }
+.om-why { padding: 40px 28px; }
+.om-why li { padding: 14px 18px; font-size: 14px; }
+.om-cta { padding: 48px 28px; }
+.om-button--primary { min-height: 52px; font-size: 15px !important; }
+.om-cta__notes { font-size: 13px; }
+.om-footer__risk strong { font-size: 20px; }
+.om-footer__risk p { font-size: 14px; line-height: 1.8; }
+.om-footer__bottom { font-size: 11px; }
+
+@media (max-width: 759px) {
+    .om-landing { font-size: 14px; }
+    .om-landing__header { min-height: 68px; padding: 10px 14px; }
+    .om-landing__brand { font-size: 18px; letter-spacing: -.6px; }
+    .om-button { min-height: 38px; padding: 8px 12px; font-size: 12px !important; }
+    .om-button--signup { padding-inline: 14px; }
+    .om-hero { padding: 32px 20px 58px; }
+    .om-hero__greeting { font-size: 15px; margin-bottom: 14px; }
+    .om-hero h1 { font-size: clamp(27px, 7vw, 34px); letter-spacing: -.7px; }
+    .om-hero__copy { font-size: 15px; line-height: 1.7; }
+    .om-highlight-card { min-height: 210px; margin: 64px 0 28px; padding: 45px 20px 22px; }
+    .om-highlight-card__avatar { width: 82px; height: 82px; top: -41px; }
+    .om-highlight-card p { font-size: 14px; }
+    .om-highlight-card strong { font-size: 16px; }
+    .om-highlight-card span { font-size: 13px; }
+    .om-stats { gap: 6px; margin-top: 28px; }
+    .om-stats span { width: min(18vw, 68px); height: min(18vw, 68px); font-size: 13px; }
+    .om-stats small { font-size: 10px; }
+    .om-section { margin-bottom: 58px; padding: 38px 20px 44px; border-radius: 28px; }
+    .om-section h2, .om-why h2, .om-cta h2, .om-referral h2, .om-community h2 { font-size: clamp(24px, 6vw, 29px); letter-spacing: -.5px; }
+    .om-section__lead, .om-community > p, .om-why > p, .om-cta p, .om-referral p { font-size: 14px; }
+    .om-feature-grid { gap: 20px; }
+    .om-feature-card { padding: 24px 22px; }
+    .om-feature-card__icon { width: 62px; height: 62px; font-size: 29px; }
+    .om-feature-card h3 { font-size: 18px; }
+    .om-feature-card > b, .om-feature-card p { font-size: 14px; }
+    .om-referral { margin: 0 16px 58px; padding: 26px 22px; border-radius: 28px; }
+    .om-referral p { margin: 16px auto 24px; }
+    .om-button--referral { min-height: 50px; font-size: 14px !important; }
+    .om-community { padding: 42px 20px 56px; }
+    .om-community__pills { gap: 8px; }
+    .om-community__pills span { padding: 9px 12px; font-size: 12px; }
+    .om-why { margin: 0 16px 58px; padding: 34px 20px; border-radius: 28px; }
+    .om-why li { padding: 12px 14px; font-size: 13px; }
+    .om-cta { margin: 0 16px 44px; padding: 38px 20px; border-radius: 28px; }
+    .om-button--primary { min-height: 48px; font-size: 14px !important; }
+    .om-cta__notes { font-size: 12px; }
+    .om-footer { padding: 26px 20px 18px; }
+    .om-footer__risk strong { font-size: 18px; }
+    .om-footer__risk p { font-size: 13px; }
+}
+@media (max-width: 370px) {
+    .om-landing__brand { font-size: 16px; }
+    .om-button { padding-inline: 9px; font-size: 11px !important; }
+    .om-stats small { font-size: 9px; }
+}
