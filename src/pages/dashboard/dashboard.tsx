@@ -9,7 +9,7 @@ import OnboardTourHandler from '../tutorials/dbot-tours/onboarding-tour';
 import Announcements from './announcements';
 import Cards from './cards';
 import InfoPanel from './info-panel';
-import OneManTradeHub from './index';
+const OneManTradeHub = React.lazy(() => import('./index'));
 
 type TMobileIconGuide = {
     handleTabChange: (active_number: number) => void;
@@ -68,7 +68,9 @@ const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
                 </div>
             </div>
             <InfoPanel />
-            <OneManTradeHub />
+            <React.Suspense fallback={null}>
+                <OneManTradeHub />
+            </React.Suspense>
             {active_tab === 0 && <OnboardTourHandler is_mobile={!isDesktop} />}
         </React.Fragment>
     );
