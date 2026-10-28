@@ -1,0 +1,72 @@
+.nt-loading {
+    --nt-bg: #04080f;
+    --nt-panel: #080d1b;
+    --nt-teal: #00d6ae;
+    --nt-red: #ff4058;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+    color: #f3f6fc;
+    background: radial-gradient(ellipse at 50% 40%, #091a26 0%, var(--nt-bg) 72%);
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.nt-loading * { box-sizing: border-box; }
+.nt-loading--fullscreen { position: fixed; inset: 0; z-index: 100001; width: 100%; min-height: 100vh; min-height: 100dvh; padding: 22px 18px 62px; }
+.nt-loading--embedded { width: 100%; min-height: 100%; padding: 18px; border-radius: 12px; }
+.nt-loading__ambient { position: absolute; z-index: -1; width: 90px; height: 105px; border-radius: 6px; opacity: .11; filter: blur(1px); animation: nt-float 5s ease-in-out infinite; }
+.nt-loading__ambient--one { top: 31%; left: 5%; background: #00d6ae; box-shadow: 0 0 30px #00d6ae; }
+.nt-loading__ambient--two { top: 43%; right: 7%; background: #ff4058; box-shadow: 0 0 30px #ff4058; animation-delay: -2s; }
+.nt-loading__panel { width: min(680px, 100%); padding: 42px clamp(22px, 6vw, 48px) 38px; border: 2px solid rgba(0,214,174,.18); border-radius: 44px; background: rgba(8,13,27,.91); box-shadow: 0 0 0 1px rgba(255,255,255,.025), 0 22px 90px rgba(0,0,0,.32), inset 0 0 65px rgba(8,35,52,.15); }
+.nt-loading__brand { text-align: center; }
+.nt-loading__wordmark { font-size: clamp(38px, 7vw, 68px); line-height: 1.05; font-weight: 900; letter-spacing: -2.8px; }
+.nt-loading__wordmark span { color: var(--nt-teal); }.nt-loading__wordmark b { color: var(--nt-red); }
+.nt-loading__subbrand { margin-top: 12px; color: #777d8c; font-size: 12px; font-weight: 800; letter-spacing: 4px; }
+.nt-loading__live { display: inline-flex; align-items: center; gap: 7px; margin-left: 12px; padding: 4px 12px; border: 1px solid rgba(0,214,174,.55); border-radius: 999px; color: var(--nt-teal); letter-spacing: 1.4px; }
+.nt-loading__live i { width: 8px; height: 8px; border-radius: 50%; background: var(--nt-teal); box-shadow: 0 0 12px var(--nt-teal); animation: nt-pulse 1.4s infinite; }
+.nt-loading__rule { height: 1px; margin: 32px 0 30px; background: linear-gradient(90deg, transparent, rgba(151,166,191,.2) 12%, rgba(151,166,191,.2) 88%, transparent); }
+.nt-loading__welcome { text-align: center; }
+.nt-loading__welcome h1 { margin: 0 0 8px; font-size: clamp(19px, 3vw, 26px); line-height: 1.35; font-weight: 750; letter-spacing: -.4px; }
+.nt-loading__welcome p { margin: 0; color: #8992a3; font-size: 15px; }
+.nt-loading__progress-row { display: flex; align-items: center; gap: 14px; margin-top: 36px; }
+.nt-loading__track { flex: 1; height: 11px; overflow: hidden; border-radius: 999px; background: #202534; }
+.nt-loading__track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg,var(--nt-teal),#8e8e8b 58%,var(--nt-red)); box-shadow: 0 0 14px rgba(0,214,174,.22); transition: width .16s ease-out; }
+.nt-loading__progress-row strong { min-width: 36px; color: #aeb6c5; font-size: 13px; text-align: right; }
+.nt-loading__status { display: flex; align-items: center; gap: 14px; min-height: 38px; margin-top: 22px; color: #9ca5b4; }
+.nt-loading__status p { margin: 0; font-size: 15px; }
+.nt-loading__spinner { flex: 0 0 auto; width: 27px; height: 27px; border: 3px solid rgba(0,214,174,.14); border-top-color: var(--nt-teal); border-right-color: var(--nt-teal); border-radius: 50%; animation: nt-spin .9s linear infinite; }
+.nt-loading__dots { display: flex; justify-content: center; gap: 12px; margin: 24px 0 36px; }
+.nt-loading__dots i { width: 12px; height: 12px; border-radius: 50%; background: #353a48; animation: nt-dot 1.2s ease-in-out infinite; }
+.nt-loading__dots i:first-child { width: 39px; border-radius: 999px; background: var(--nt-teal); box-shadow: 0 0 16px rgba(0,214,174,.45); }
+.nt-loading__dots i:nth-child(2) { animation-delay: .12s; }.nt-loading__dots i:nth-child(3) { animation-delay: .24s; }.nt-loading__dots i:nth-child(4) { animation-delay: .36s; }.nt-loading__dots i:nth-child(5) { animation-delay: .48s; }.nt-loading__dots i:nth-child(6) { animation-delay: .6s; }
+.nt-loading__features { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.nt-loading__features > div { display: flex; align-items: center; flex-direction: column; gap: 12px; min-width: 0; color: #929aaa; text-align: center; }
+.nt-loading__features span { display: grid; place-items: center; width: 86px; height: 86px; border: 2px solid rgba(160,171,195,.16); border-radius: 50%; background: rgba(255,255,255,.055); font-size: 25px; box-shadow: inset 0 0 22px rgba(255,255,255,.025); }
+.nt-loading__features b { font-size: 13px; font-weight: 650; }
+.nt-loading__footnote { margin: 34px 0 0; color: #626a7b; font-size: 14px; font-style: italic; text-align: center; }
+.nt-loading__ticker { position: absolute; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: space-around; gap: 20px; min-height: 44px; padding: 8px 18px; border-top: 1px solid rgba(160,171,195,.12); color: #777f8e; background: rgba(5,9,17,.9); font-size: 10px; letter-spacing: 1px; white-space: nowrap; }
+.nt-loading__ticker b { color: var(--nt-teal); }
+@keyframes nt-spin { to { transform: rotate(360deg); } }
+@keyframes nt-pulse { 50% { opacity: .45; } }
+@keyframes nt-dot { 50% { opacity: .4; transform: translateY(-2px); } }
+@keyframes nt-float { 50% { transform: translateY(-12px); } }
+@media (max-width: 520px) {
+ .nt-loading--fullscreen { padding: 16px 12px 52px; }
+ .nt-loading__panel { padding: 30px 20px 26px; border-radius: 32px; }
+ .nt-loading__wordmark { font-size: clamp(36px, 10vw, 54px); letter-spacing: -2px; }
+ .nt-loading__subbrand { font-size: 9px; letter-spacing: 2.5px; }
+ .nt-loading__live { margin-left: 6px; padding: 3px 8px; font-size: 9px; }
+ .nt-loading__rule { margin: 25px 0 24px; }
+ .nt-loading__progress-row { margin-top: 28px; }
+ .nt-loading__status p { font-size: 13px; }
+ .nt-loading__dots { margin: 20px 0 28px; gap: 9px; }
+ .nt-loading__dots i { width: 10px; height: 10px; }
+ .nt-loading__dots i:first-child { width: 30px; }
+ .nt-loading__features { gap: 6px; }
+ .nt-loading__features span { width: min(22vw, 76px); height: min(22vw, 76px); font-size: 22px; }
+ .nt-loading__features b { font-size: 11px; }
+ .nt-loading__footnote { margin-top: 26px; font-size: 12px; }
+ .nt-loading__ticker { justify-content: flex-start; overflow: hidden; gap: 16px; font-size: 9px; }
+}
