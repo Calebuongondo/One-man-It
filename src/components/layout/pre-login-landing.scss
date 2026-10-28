@@ -149,3 +149,5 @@
     .om-footer { margin: 0 18px; }.om-footer__bottom { flex-direction: column; gap: 5px; }
 }
 @media (prefers-reduced-motion: reduce) { .om-button { transition: none; } .om-button:hover { transform: none; } }
+
+.om-landing-overlay { position: fixed; inset: 0; z-index: 100000; overflow-y: auto; overscroll-behavior: contain; background: #050d1b; }
