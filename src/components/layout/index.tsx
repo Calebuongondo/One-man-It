@@ -18,7 +18,8 @@ const Layout = observer(() => {
     const { isDesktop } = useDevice();
     const store = useStore();
     const { activeLoginid } = useApiBase();
-    const [showStartupSplash, setShowStartupSplash] = useState(window.location.pathname !== '/callback');
+    // Keep the pre-login page accessible immediately; the decorative splash must not block login.
+    const [showStartupSplash, setShowStartupSplash] = useState(false);
     const is_quick_strategy_active = store?.quick_strategy?.is_open;
     const isCallbackPage = window.location.pathname === '/callback';
 
