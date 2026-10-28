@@ -29,8 +29,8 @@ const PreLoginLanding = () => {
     return (
         <main className='om-landing'>
             <header className='om-landing__header'>
-                <a className='om-landing__brand' href='/' aria-label='OneMan Trade home'>
-                    <span className='om-landing__brand-one'>One</span><span className='om-landing__brand-man'>Man</span><span className='om-landing__brand-trade'>Trade</span>
+                <a className='om-landing__brand' href='/' aria-label='NovaTrade home'>
+                    <span className='om-landing__brand-one'>Nova</span><span className='om-landing__brand-man'>Trade</span>
                 </a>
                 <div className='om-landing__header-actions'>
                     <button className='om-button om-button--light' onClick={() => startAuth('login')} disabled={!!loading}>
@@ -44,13 +44,13 @@ const PreLoginLanding = () => {
 
             <section className='om-hero'>
                 <div className='om-hero__greeting'>Good trading starts with a plan</div>
-                <h1>Welcome to <span className='om-brand-gradient'>OneMan Trade</span></h1>
+                <h1>Welcome to <span className='om-brand-gradient'>NovaTrade</span></h1>
                 <p className='om-hero__copy'>Your all-in-one workspace for automated trading, visual bots, and market insights.</p>
                 <div className='om-highlight-card'>
                     <div className='om-highlight-card__avatar' aria-hidden='true'>OM</div>
                     <div className='om-highlight-card__quote-mark'>”</div>
                     <p>Build strategies visually, explore market charts, and stay in control of your trading workflow.</p>
-                    <strong>OneMan Trade</strong>
+                    <strong>NovaTrade</strong>
                     <span>Trading tools in one workspace</span>
                     <div className='om-highlight-card__stars' aria-label='Four feature highlights'>✦　✦　✦　✦　✦</div>
                 </div>
@@ -133,9 +133,9 @@ const PreLoginLanding = () => {
             {authError && <p className='om-landing__error' role='alert'>{authError}</p>}
 
             <footer className='om-footer' id='risk'>
-                <div className='om-footer__brand'><span className='om-landing__brand-one'>One</span><span className='om-landing__brand-man'>Man</span><span className='om-landing__brand-trade'>Trade</span></div>
+                <div className='om-footer__brand'><span className='om-landing__brand-one'>Nova</span><span className='om-landing__brand-man'>Trade</span></div>
                 <div className='om-footer__risk'><strong>⚠ Risk Disclaimer</strong><p>Deriv offers complex derivatives, including options and CFDs. These products may not be suitable for all clients, and trading them puts you at risk. You may lose some or all of the money you invest. Currency conversion can affect profit and loss. Never trade with borrowed money or money you cannot afford to lose.</p></div>
-                <div className='om-footer__bottom'><span>© {new Date().getFullYear()} OneMan Trade</span><span>Trading involves risk. No profits are guaranteed.</span></div>
+                <div className='om-footer__bottom'><span>© {new Date().getFullYear()} NovaTrade</span><span>Trading involves risk. No profits are guaranteed.</span></div>
             </footer>
         </main>
     );
