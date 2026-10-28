@@ -1,11 +1,11 @@
 {
-  "brand_name": "OneMan Trade",
+  "brand_name": "NovaTrade",
   "brand_domain": "oneman-trade.onrender.com",
   "brand_hostname": {
     "staging": "staging.oneman-trade.onrender.com/dashboard",
     "production": "oneman-trade.onrender.com/dashboard"
   },
-  "domain_name": "OneManTrade.com",
+  "domain_name": "NovaTrade",
   "colors": {
     "primary": "#00a88f",
     "secondary": "#344054",
@@ -79,14 +79,14 @@
     "css_variable_prefix": "--brand"
   },
   "platform": {
-    "name": "OneMan Trade",
+    "name": "NovaTrade",
     "logo": {
       "type": "component",
       "component_name": "BrandLogo",
-      "alt_text": "OneMan Trade",
+      "alt_text": "NovaTrade",
       "link_url": "/",
       "show_text": true,
-      "text": "OneMan Trade"
+      "text": "NovaTrade"
     },
     "footer": {
       "enable_language_settings": false,
