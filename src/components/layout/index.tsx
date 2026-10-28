@@ -4,16 +4,19 @@ import { observer } from 'mobx-react-lite';
 import { Outlet } from 'react-router-dom';
 import { api_base } from '@/external/bot-skeleton';
 import { useStore } from '@/hooks/useStore';
+import { useApiBase } from '@/hooks/useApiBase';
 import { useDevice } from '@deriv-com/ui';
 import { crypto_currencies_display_order, fiat_currencies_display_order } from '../shared';
 import Footer from './footer';
 import AppHeader from './header';
 import Body from './main-body';
+import PreLoginLanding from './pre-login-landing';
 import './layout.scss';
 
 const Layout = observer(() => {
     const { isDesktop } = useDevice();
     const store = useStore();
+    const { activeLoginid } = useApiBase();
     const is_quick_strategy_active = store?.quick_strategy?.is_open;
     const isCallbackPage = window.location.pathname === '/callback';
 
@@ -153,6 +156,11 @@ const Layout = observer(() => {
                 <Outlet />
             </Body>
             {!isCallbackPage && isDesktop && <Footer />}
+            {!activeLoginid && !isCallbackPage && (
+                <div className='om-landing-overlay'>
+                    <PreLoginLanding />
+                </div>
+            )}
         </div>
     );
 });
