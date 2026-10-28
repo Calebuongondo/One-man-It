@@ -1,10 +1,5 @@
-import { Loader } from '@deriv-com/ui';
+import NovaTradeLoading from '../novatrade-loading';
 
 export default function ChunkLoader({ message }: { message: string }) {
-    return (
-        <div className='app-root'>
-            <Loader />
-            <div className='load-message'>{message}</div>
-        </div>
-    );
+    return <NovaTradeLoading status={message || 'Loading NovaTrade tools...'} fullscreen />;
 }
