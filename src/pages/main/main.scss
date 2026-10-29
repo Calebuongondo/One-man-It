@@ -785,7 +785,7 @@
     background: #142c3d !important;
     color: #fff !important;
 }
-.main .dc-tabs__active-line { background: #32bdf2 !important; height: 0.3rem !important; }
+.main .dc-tabs__active-line { display: none !important; }
 @media (max-width: 767px) {
     .main .dc-tabs__list,
     .main .dc-tabs__list--header--main__tabs {
@@ -849,5 +849,39 @@
         overflow-x: hidden !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+/* Final mobile visibility override: no stray active underline across tab labels. */
+@media (max-width: 767px) {
+    .main .dc-tabs__list,
+    .main .dc-tabs__list--header--main__tabs {
+        background: #061b2b !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+    .main .dc-tabs__active-line,
+    .main .dc-tabs__list::after {
+        display: none !important;
+        content: none !important;
+    }
+    .main .dc-tabs__item,
+    .main .dc-tabs__item span,
+    .main .dc-tabs__item .dc-text {
+        color: #f8fafc !important;
+        opacity: 1 !important;
+    }
+    .main .dc-tabs__item--active,
+    .main .dc-tabs__item[aria-selected="true"] {
+        background: #173f78 !important;
+        color: #ffffff !important;
+        border-bottom: 0 !important;
+        box-shadow: none !important;
+    }
+    .main .dc-tabs__item--active span,
+    .main .dc-tabs__item--active .dc-text,
+    .main .dc-tabs__item[aria-selected="true"] span {
+        color: #ffffff !important;
     }
 }
