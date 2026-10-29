@@ -15,11 +15,9 @@ import NovaTradeLoading from '../novatrade-loading';
 import './layout.scss';
 
 const getStoredOAuthLoginid = (): string => {
+    // The account id is the UI's signed-in marker. Do not let a transient/missing
+    // auth_info value remount the full-screen landing overlay over an already-open app.
     try {
-        const rawAuthInfo = sessionStorage.getItem('auth_info');
-        const authInfo = rawAuthInfo ? JSON.parse(rawAuthInfo) : null;
-        const isTokenValid = !!authInfo?.access_token && (!authInfo.expires_at || Date.now() < authInfo.expires_at);
-        if (!isTokenValid) return '';
         return sessionStorage.getItem('novatrade_oauth_loginid') || localStorage.getItem('active_loginid') || '';
     } catch {
         return '';
