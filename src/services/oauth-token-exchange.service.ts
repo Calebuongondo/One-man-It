@@ -231,7 +231,7 @@ export class OAuthTokenExchangeService {
                         );
 
                         const { api_base } = await import('@/external/bot-skeleton');
-                        void api_base.init(true).catch(error => {
+                        void Promise.resolve(api_base.init(true)).catch(error => {
                             console.error('[OAuth] Trading connection initialization failed:', error);
                         });
                     } else {
