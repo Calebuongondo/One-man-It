@@ -32,6 +32,30 @@ const AppHeader = observer(() => {
         return Boolean(params.get('code') && params.get('state'));
     });
 
+    // A completed OAuth token exchange with a stored Deriv account means the app is
+    // still completing WebSocket authorization. Do not offer Log in / Sign up again
+    // while that authenticated session is being restored.
+    const [hasPendingStoredAuth, setHasPendingStoredAuth] = useState(() => {
+        try {
+            const authInfo = JSON.parse(sessionStorage.getItem('auth_info') || 'null');
+            return Boolean(authInfo?.access_token && authInfo?.expires_at > Date.now() && localStorage.getItem('active_loginid'));
+        } catch {
+            return false;
+        }
+    });
+
+    useEffect(() => {
+        const handleOAuthAccountReady = () => setHasPendingStoredAuth(true);
+        window.addEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
+        return () => window.removeEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
+    }, []);
+
+    useEffect(() => {
+        if (activeLoginid) {
+            setHasPendingStoredAuth(false);
+        }
+    }, [activeLoginid]);
+
     const { data: activeAccount } = useActiveAccount({
         allBalanceData: client?.all_accounts_balance,
         directBalance: client?.balance,
@@ -69,7 +93,7 @@ const AppHeader = observer(() => {
         if (isOAuthPending) return;
 
         const timer = setTimeout(() => {
-            if (isAuthorizing && !activeLoginid) {
+            if (isAuthorizing && !activeLoginid && !hasPendingStoredAuth) {
                 setAuthTimeout(true);
                 setIsAuthorizing(false);
             }
@@ -167,6 +191,7 @@ const AppHeader = observer(() => {
             else if (
                 position === 'right' &&
                 !isOAuthPending &&
+                !hasPendingStoredAuth &&
                 ((!is_account_regenerating && !isAuthorizing && !activeLoginid) || authTimeout)
             ) {
                 return (
@@ -216,6 +241,7 @@ const AppHeader = observer(() => {
             authTimeout,
             is_account_regenerating,
             isOAuthPending,
+            hasPendingStoredAuth,
             authData,
             handleLogin,
             handleSignup,
