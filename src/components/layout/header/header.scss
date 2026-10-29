@@ -1227,3 +1227,84 @@
     .app-header .acc-info__balance { font-size: 1.2rem !important; }
     .novatrade-market-ticker { height: 3.4rem !important; min-height: 3.4rem !important; }
 }
+
+
+/* Header and announcement colors must not inherit theme colors.
+   Explicit high-contrast brand surfaces work in both light and dark mode. */
+.app-header,
+.theme--light .app-header,
+.theme--dark .app-header {
+    background: #10233f !important;
+    color: #f8fafc !important;
+    border-bottom: 1px solid #284263 !important;
+}
+.app-header > .novatrade-topbar-left,
+.app-header > .novatrade-topbar-right {
+    background: transparent !important;
+    color: #f8fafc !important;
+}
+.app-header .novatrade-currency-chip {
+    background: #e5edf8 !important;
+    color: #10233f !important;
+    border: 1px solid #b7c8df !important;
+    border-radius: 0.8rem !important;
+}
+.app-header .novatrade-currency-chip__active {
+    background: #0d9488 !important;
+    color: #ffffff !important;
+    border-radius: 0.45rem !important;
+}
+.app-header .novatrade-currency-chip__muted {
+    color: #334155 !important;
+}
+.app-header .novatrade-phone-action {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #dbeafe !important;
+    color: #12345a !important;
+    border-radius: 50% !important;
+}
+.app-header .novatrade-phone-action svg {
+    fill: currentColor !important;
+}
+.app-header .account-info,
+.app-header .account-info *,
+.app-header .acc-info,
+.app-header .acc-info * {
+    color: #f8fafc !important;
+}
+.app-header .acc-info__balance {
+    color: #5eead4 !important;
+}
+.app-header .account-info button,
+.app-header .account-info [role='button'] {
+    color: #ffffff !important;
+}
+.app-header .auth-actions button {
+    background: #6d28d9 !important;
+    color: #ffffff !important;
+    border: 1px solid #8b5cf6 !important;
+}
+.novatrade-market-ticker,
+.theme--light .novatrade-market-ticker,
+.theme--dark .novatrade-market-ticker {
+    background: #b91c1c !important;
+    color: #ffffff !important;
+    border-top: 1px solid #f87171 !important;
+    border-bottom: 1px solid #7f1d1d !important;
+}
+.novatrade-market-ticker *,
+.novatrade-market-ticker__track {
+    color: #ffffff !important;
+}
+.theme--light .main__tabs,
+.theme--dark .main__tabs {
+    background: #172b49 !important;
+    color: #f8fafc !important;
+    border-bottom: 1px solid #304968 !important;
+}
+.theme--light .main__tabs *,
+.theme--dark .main__tabs * {
+    color: inherit;
+}
