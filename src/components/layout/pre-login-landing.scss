@@ -184,3 +184,42 @@
     pointer-events: auto;
     touch-action: manipulation;
 }
+
+
+/* Hard override for the pre-login screen: keep it above app chrome and independently scrollable. */
+html:has(.om-landing-overlay),
+body:has(.om-landing-overlay) {
+    overflow: hidden !important;
+}
+.om-landing-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    display: block !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+    overscroll-behavior: auto !important;
+    pointer-events: auto !important;
+    touch-action: pan-y !important;
+    isolation: isolate;
+    transform: none !important;
+}
+.om-landing-overlay > .om-landing {
+    display: block !important;
+    position: relative !important;
+    min-height: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+}
+.om-landing-overlay .om-landing button,
+.om-landing-overlay .om-landing a {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+}
