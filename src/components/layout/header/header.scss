@@ -458,3 +458,76 @@
     from { transform: translateX(100vw); }
     to { transform: translateX(-100%); }
 }
+
+
+/* Force the reference mint surface across the actual Deriv Header wrappers.
+   Some @deriv-com/ui versions paint their own inner wrappers over the root. */
+.app-header,
+.app-header > *,
+.app-header [class*='header'],
+.app-header [class*='wrapper'],
+.app-header [class*='Wrapper'] {
+    background-color: #eafff5 !important;
+    color: #102a2a !important;
+}
+
+.app-header {
+    min-height: 7.4rem !important;
+    padding: 0 1.6rem !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.app-header button,
+.app-header [role='button'] {
+    color: #102a2a;
+}
+
+.app-header .auth-actions button {
+    border-radius: 2.4rem !important;
+    background: #7c3aed !important;
+    color: #fff !important;
+    border: 0 !important;
+    min-height: 3.8rem;
+    padding: 0 2rem;
+    font-weight: 600;
+}
+
+.app-header .acc-info__balance,
+.app-header .acc-info__account-type,
+.app-header .acc-info__select-arrow {
+    color: #009e95 !important;
+}
+
+.app-header .acc-info__id {
+    border-color: #009e95 !important;
+}
+
+.novatrade-currency-chip {
+    background: #243b55 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    min-height: 3.4rem;
+}
+
+.novatrade-market-ticker {
+    background: #c62828 !important;
+    color: #fff !important;
+    min-height: 3.8rem;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 767px) {
+    .app-header {
+        min-height: 6.8rem !important;
+        padding: 0 0.8rem !important;
+    }
+    .app-header .auth-actions button {
+        min-height: 3.4rem;
+        padding: 0 1.4rem;
+    }
+    .novatrade-market-ticker {
+        min-height: 3.4rem;
+        font-size: 1.1rem;
+    }
+}
