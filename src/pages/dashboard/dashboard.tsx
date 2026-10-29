@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import Text from '@/components/shared_ui/text';
@@ -14,7 +14,10 @@ type TMobileIconGuide = {
     handleTabChange: (active_number: number) => void;
 };
 
+const PLACEHOLDER_TABS = ['Dashboard', 'Bot Builder', 'Trading Bots', 'Bulk Trader', 'Pro AI', 'Dual Edge', 'Analysis Tool', 'Copy Trading', 'Charts', 'Risk Calculator', 'Manual Trader', 'TradingView'];
+
 const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
+    const [activePlaceholderTab, setActivePlaceholderTab] = useState('Dashboard');
     const { load_modal, dashboard, client } = useStore();
     const { dashboard_strategies } = load_modal;
     const { active_tab, active_tour } = dashboard;
@@ -23,6 +26,20 @@ const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
 
     return (
         <React.Fragment>
+            <nav aria-label='OneMan Trade placeholder tabs' style={{ display: 'flex', gap: 0, overflowX: 'auto', whiteSpace: 'nowrap', background: '#071c2b', borderBottom: '1px solid #254254', marginBottom: 16 }}>
+                {PLACEHOLDER_TABS.map(tab => (
+                    <button
+                        key={tab}
+                        type='button'
+                        onClick={() => setActivePlaceholderTab(tab)}
+                        aria-current={activePlaceholderTab === tab ? 'page' : undefined}
+                        style={{ flex: '0 0 auto', padding: '13px 16px', border: 0, borderRight: '1px solid #254254', background: activePlaceholderTab === tab ? '#19457d' : 'transparent', color: '#f4f7fb', fontWeight: 700, cursor: 'pointer' }}
+                    >
+                        {tab}
+                    </button>
+                ))}
+            </nav>
+            {activePlaceholderTab === 'Dashboard' ? <>
             <div
                 className={classNames('tab__dashboard', {
                     'tab__dashboard--tour-active': active_tour,
@@ -68,6 +85,12 @@ const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
             </div>
             <InfoPanel />
             {active_tab === 0 && <OnboardTourHandler is_mobile={!isDesktop} />}
+            </> : (
+                <section role='status' style={{ margin: '16px', padding: '24px', border: '1px solid #d7dce0', borderRadius: 8, color: 'var(--text-general, #333)', background: 'var(--general-section-1, #fff)' }}>
+                    <h2 style={{ marginTop: 0 }}>{activePlaceholderTab}</h2>
+                    <p style={{ marginBottom: 0 }}>This tab is a placeholder for now. Its features will be added later.</p>
+                </section>
+            )}
         </React.Fragment>
     );
 });
