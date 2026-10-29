@@ -1156,3 +1156,74 @@
     .app-header .acc-info__balance { font-size: 1.15rem !important; }
     .app-header .auth-actions button { padding: 0 0.8rem !important; font-size: 1.1rem !important; }
 }
+
+
+/* Visibility recovery: keep the announcement strip visible and reserve real
+   space for the account controls. Do not fabricate account balances or auth. */
+.novatrade-market-ticker {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 3.8rem !important;
+    min-height: 3.8rem !important;
+    overflow: hidden !important;
+    background: #c62828 !important;
+    color: #ffffff !important;
+    z-index: 30 !important;
+}
+.novatrade-market-ticker__track {
+    display: flex !important;
+    align-items: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-width: max-content !important;
+    color: #ffffff !important;
+}
+.app-header > .novatrade-topbar-right {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    flex-shrink: 0 !important;
+}
+.app-header > .novatrade-topbar-right:empty {
+    display: none !important;
+}
+.app-header .auth-actions,
+.app-header .account-info {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+@media (max-width: 767px) {
+    .app-header {
+        height: auto !important;
+        min-height: 6.8rem !important;
+        padding: 0 0.7rem !important;
+        gap: 0.5rem !important;
+    }
+    .app-header > .novatrade-topbar-left {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        gap: 0.55rem !important;
+    }
+    .app-header > .novatrade-topbar-right {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        margin-left: auto !important;
+        gap: 0.45rem !important;
+    }
+    .app-header .auth-actions button {
+        min-height: 3.4rem !important;
+        padding: 0 0.9rem !important;
+        font-size: 1.15rem !important;
+    }
+    .app-header .novatrade-country-flag { font-size: 2.25rem !important; }
+    .app-header .acc-info__balance { font-size: 1.2rem !important; }
+    .novatrade-market-ticker { height: 3.4rem !important; min-height: 3.4rem !important; }
+}
