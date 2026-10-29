@@ -288,1023 +288,208 @@
 }
 
 
-/* NovaTrade post-login header styling, inspired by the supplied reference.
-   Keep the existing header controls and navigation; only adjust the top bar. */
-.app-header {
-    background: #eafff5 !important;
-    color: #102a2a !important;
-    border-bottom: 1px solid #cfe9df;
-    min-height: 6rem;
-
-    .auth-actions {
-        gap: 0.8rem;
-        padding: 0.6rem 0.8rem;
-
-        button {
-            margin-inline-end: 0;
-            border-radius: 2.4rem;
-            min-height: 3.8rem;
-            padding-inline: 1.8rem;
-            font-weight: 600;
-        }
-
-        button:last-child {
-            background: #7c3aed;
-            color: #fff;
-            border-color: #7c3aed;
-        }
-    }
-
-    .auth-actions--loading {
-        color: #0b8f87;
-    }
-
-    .account-info {
-        color: #102a2a;
-    }
-
-    @include mobile-or-tablet-screen {
-        min-height: 5.6rem;
-
-        .auth-actions {
-            gap: 0.4rem;
-            padding: 0.4rem;
-
-            button {
-                min-height: 3.4rem;
-                padding-inline: 1.2rem;
-                font-size: 1.2rem;
-            }
-        }
-    }
-}
-
-
-/* Reference-inspired account header: mint surface, compact currency chip,
-   rounded purple action and a scrolling market notice beneath it. */
-.app-header {
-    box-sizing: border-box;
-    width: 100%;
-    background: #eafff5 !important;
-    color: #102a2a !important;
-    border-bottom: 1px solid #cfe9df;
-    min-height: 6rem;
-    padding-inline: 1.6rem;
-
-    .app-header__wrapper,
-    [class*='header__wrapper'] {
-        align-items: center;
-    }
-
-    .auth-actions {
-        gap: 0.8rem;
-        padding-block: 0.6rem;
-
-        button {
-            margin-inline-end: 0;
-            border-radius: 2.4rem;
-            min-height: 3.8rem;
-            padding-inline: 2rem;
-            font-weight: 600;
-            box-shadow: none;
-        }
-
-        button:last-child {
-            background: #7c3aed !important;
-            color: #fff !important;
-            border-color: #7c3aed !important;
-        }
-    }
-
-    .auth-actions--loading { color: #0b8f87; }
-
-    @include mobile-or-tablet-screen {
-        padding-inline: 0.8rem;
-        min-height: 5.6rem;
-
-        .auth-actions {
-            gap: 0.4rem;
-            padding: 0.3rem;
-
-            button {
-                min-height: 3.4rem;
-                padding-inline: 1.1rem;
-                font-size: 1.2rem;
-                white-space: nowrap;
-            }
-        }
-    }
-}
-
-.novatrade-currency-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
-    margin-inline-start: 1.2rem;
-    padding: 0.6rem 0.8rem;
-    border: 1px solid #c5d8e0;
-    background: #263b55;
-    color: #fff;
-    border-radius: 0.3rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.6rem;
-    text-transform: uppercase;
-
-    &__muted {
-        color: #d3dbe5;
-        font-weight: 500;
-    }
-
-    @include mobile-or-tablet-screen {
-        margin-inline-start: 0.4rem;
-        padding: 0.45rem 0.55rem;
-        font-size: 1.05rem;
-        gap: 0.3rem;
-    }
-}
-
-.novatrade-market-ticker {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    overflow: hidden;
-    white-space: nowrap;
-    min-height: 3.6rem;
-    padding-inline: 1.2rem;
-    background: #b91c1c;
-    color: #fff;
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-
-    span {
-        flex-shrink: 0;
-    }
-
-    span:first-child {
-        animation: novatrade-ticker-scroll 24s linear infinite;
-    }
-
-    @include mobile-or-tablet-screen {
-        min-height: 3.2rem;
-        gap: 2rem;
-        font-size: 1.1rem;
-    }
-}
-
-@keyframes novatrade-ticker-scroll {
-    from { transform: translateX(100vw); }
-    to { transform: translateX(-100%); }
-}
-
-
-/* Force the reference mint surface across the actual Deriv Header wrappers.
-   Some @deriv-com/ui versions paint their own inner wrappers over the root. */
-.app-header,
-.app-header > *,
-.app-header [class*='header'],
-.app-header [class*='wrapper'],
-.app-header [class*='Wrapper'] {
-    background-color: #eafff5 !important;
-    color: #102a2a !important;
-}
-
-.app-header {
-    min-height: 7.4rem !important;
-    padding: 0 1.6rem !important;
-    border: 0 !important;
-    box-shadow: none !important;
-}
-
-.app-header button,
-.app-header [role='button'] {
-    color: #102a2a;
-}
-
-.app-header .auth-actions button {
-    border-radius: 2.4rem !important;
-    background: #7c3aed !important;
-    color: #fff !important;
-    border: 0 !important;
-    min-height: 3.8rem;
-    padding: 0 2rem;
-    font-weight: 600;
-}
-
-.app-header .acc-info__balance,
-.app-header .acc-info__account-type,
-.app-header .acc-info__select-arrow {
-    color: #009e95 !important;
-}
-
-.app-header .acc-info__id {
-    border-color: #009e95 !important;
-}
-
-.novatrade-currency-chip {
-    background: #243b55 !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    min-height: 3.4rem;
-}
-
-.novatrade-market-ticker {
-    background: #c62828 !important;
-    color: #fff !important;
-    min-height: 3.8rem;
-    font-size: 1.3rem;
-}
-
-@media (max-width: 767px) {
-    .app-header {
-        min-height: 6.8rem !important;
-        padding: 0 0.8rem !important;
-    }
-    .app-header .auth-actions button {
-        min-height: 3.4rem;
-        padding: 0 1.4rem;
-    }
-    .novatrade-market-ticker {
-        min-height: 3.4rem;
-        font-size: 1.1rem;
-    }
-}
-
-
-/* Screenshot-matched top interface: mint account strip, currency switch badge,
-   phone/support action, purple withdrawal CTA, live account balance and dropdown. */
-.app-header,
-.app-header > *,
-.app-header [class*='header'],
-.app-header [class*='wrapper'],
-.app-header [class*='Wrapper'] {
-    background-color: #eafff5 !important;
-    color: #102a2a !important;
-}
+/* NovaTrade reference header — one consistent toolbar, no overlapping controls. */
 .app-header {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    gap: 1.2rem !important;
     width: 100% !important;
-    min-height: 7.6rem !important;
-    padding: 0 1.8rem !important;
+    min-width: 0 !important;
+    min-height: 7.2rem !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding: 0 1.6rem !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    background: #eafff5 !important;
+    color: #102a2a !important;
     border: 0 !important;
     box-shadow: none !important;
-    gap: 1.4rem !important;
+    position: relative;
+    z-index: 20;
+    scrollbar-width: none;
 
-    > * { min-width: 0; }
-    .auth-actions {
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0;
+    &::-webkit-scrollbar { display: none; }
+
+    > * { box-sizing: border-box; }
+
+    .novatrade-topbar-left,
+    .novatrade-topbar-right {
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        gap: 1rem !important;
+        min-width: max-content !important;
+        height: 100%;
     }
+
+    .novatrade-topbar-left { flex: 1 0 auto; }
+    .novatrade-topbar-right { flex: 0 0 auto; margin-inline-start: auto; }
+
+    .auth-actions {
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        gap: 1rem !important;
+        padding: 0 !important;
+        min-width: max-content !important;
+    }
+
+    .account-info {
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        gap: 0.8rem !important;
+        min-width: max-content !important;
+        color: #008f87 !important;
+    }
+
     .auth-actions button {
         margin: 0 !important;
-        min-height: 4.4rem !important;
-        padding: 0 2.4rem !important;
+        min-height: 3.8rem !important;
+        padding: 0 2rem !important;
         border: 0 !important;
-        border-radius: 2.8rem !important;
-        background: #7c3aed !important;
+        border-radius: 2.4rem !important;
+        background: #6d28d9 !important;
         color: #fff !important;
-        font-size: 1.5rem;
-        font-weight: 600;
-        white-space: nowrap;
+        font-size: 1.4rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
         box-shadow: none !important;
     }
-    .account-info {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        color: #009e95 !important;
-    }
-    .acc-info__wrapper { min-width: 0; }
-    .acc-info,
-    .acc-info__content,
+
     .acc-info__balance,
     .acc-info__select-arrow,
-    .acc-info__account-type {
-        color: #009e95 !important;
-    }
+    .acc-info__account-type { color: #008f87 !important; }
+
     .acc-info__balance {
-        font-size: 2rem !important;
+        font-size: 1.8rem !important;
         line-height: 1.2 !important;
         font-weight: 800 !important;
-        white-space: nowrap;
+        white-space: nowrap !important;
     }
-    .acc-info__account-type { display: none !important; }
-    .acc-info__select-arrow svg { width: 2.2rem; height: 2.2rem; }
+
+    .acc-info__account-type,
     .acc-info__id { display: none !important; }
 }
-.novatrade-country-flag {
-    font-size: 3.6rem;
-    line-height: 1;
-    flex-shrink: 0;
-}
+
 .novatrade-currency-chip {
     display: inline-flex !important;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    gap: 0.4rem !important;
     margin: 0 !important;
-    padding: 0.45rem 0.55rem !important;
+    padding: 0.45rem 0.6rem !important;
+    min-height: 3.4rem !important;
+    box-sizing: border-box !important;
     background: #263b55 !important;
     color: #fff !important;
     border: 0 !important;
-    border-radius: 0 !important;
-    font-size: 1.3rem !important;
-    font-weight: 700;
-    line-height: 1.6rem;
+    border-radius: 0.3rem !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    line-height: 1.6rem !important;
+    white-space: nowrap !important;
 }
 .novatrade-currency-chip__active {
-    background: #078ac4;
     padding: 0.25rem 0.35rem;
+    background: #078ac4;
     color: #fff;
 }
 .novatrade-currency-chip__muted { color: #d4dce5 !important; font-weight: 500; }
+
 .novatrade-phone-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.6rem;
-    height: 3.6rem;
-    color: #39aaf5 !important;
-    flex-shrink: 0;
-    text-decoration: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 3.6rem !important;
+    height: 3.6rem !important;
+    color: #249de0 !important;
+    text-decoration: none !important;
 }
-.novatrade-phone-action svg { width: 3.2rem; height: 3.2rem; fill: currentColor; }
+.novatrade-phone-action svg { display: block; width: 2.8rem; height: 2.8rem; fill: currentColor; }
+.novatrade-country-flag { flex: 0 0 auto; font-size: 2.8rem; line-height: 1; }
+
 .novatrade-market-ticker {
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
-    min-height: 3.8rem;
-    padding: 0 3.8rem 0 0;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 3.6rem !important;
+    box-sizing: border-box !important;
+    padding: 0 4rem 0 1.2rem !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
     background: #b91c1c !important;
     color: #fff !important;
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: 0.015em;
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    line-height: 1.4 !important;
+    z-index: 19;
 }
 .novatrade-market-ticker__track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    gap: 4rem;
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    gap: 4rem !important;
     animation: novatrade-ticker-scroll 26s linear infinite;
 }
-.novatrade-market-ticker__track span { flex-shrink: 0; }
+.novatrade-market-ticker__track span { flex: 0 0 auto; }
 .novatrade-market-ticker__close {
-    position: absolute;
-    right: 0.6rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    border: 0;
-    border-radius: 50%;
-    background: rgb(0 0 0 / 15%);
-    color: #fff;
-    font-size: 2.8rem;
-    line-height: 2.8rem;
-    width: 3rem;
-    height: 3rem;
+    position: absolute !important;
+    top: 50% !important;
+    right: 0.6rem !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 2.8rem !important;
+    height: 2.8rem !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: #991b1b !important;
+    color: #fff !important;
+    font-size: 2.2rem !important;
+    line-height: 1 !important;
     cursor: pointer;
 }
 @keyframes novatrade-ticker-scroll {
     from { transform: translateX(100vw); }
     to { transform: translateX(-100%); }
 }
-@media (max-width: 767px) {
-    .app-header { min-height: 7.6rem !important; padding: 0 1.2rem !important; gap: 0.8rem !important; }
-    .app-header .auth-actions { gap: 0.6rem; }
-    .app-header .auth-actions button { min-height: 3.8rem !important; padding: 0 1.5rem !important; font-size: 1.35rem; }
-    .app-header .account-info { gap: 0.4rem; }
-    .app-header .acc-info__balance { font-size: 1.55rem !important; }
-    .novatrade-country-flag { font-size: 2.8rem; }
-    .novatrade-currency-chip { font-size: 1.05rem !important; padding: 0.35rem !important; gap: 0.25rem; }
-    .novatrade-phone-action { width: 2.6rem; height: 2.8rem; }
-    .novatrade-phone-action svg { width: 2.5rem; height: 2.5rem; }
-}
 
-
-/* FINAL layout correction: preserve the UI library header's own display model.
-   The earlier root-level flex override could compress its left/right wrappers
-   until the mint bar and controls were effectively clipped on small screens. */
-.app-header {
-    display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-    min-height: 7.4rem !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
-    background: #eafff5 !important;
-    color: #102a2a !important;
-    padding: 0 !important;
-    border: 0 !important;
-    box-shadow: 0 2px 8px rgb(10 50 40 / 8%) !important;
-    position: relative;
-    z-index: 20;
-}
-.app-header > div,
-.app-header [class*='wrapper'],
-.app-header [class*='Wrapper'] {
-    background-color: #eafff5 !important;
-    color: #102a2a !important;
-    box-sizing: border-box;
-}
-.app-header > div {
-    min-height: 7.4rem;
-    max-width: 100%;
-}
-.app-header [class*='left'],
-.app-header [class*='right'] {
-    align-items: center !important;
-    min-width: 0 !important;
-}
-.app-header [class*='left'] {
-    gap: 1.1rem !important;
-}
-.app-header [class*='right'] {
-    flex-shrink: 0 !important;
-}
-.app-header .auth-actions {
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: nowrap !important;
-    min-width: 0 !important;
-    gap: 1rem !important;
-}
-.app-header .auth-actions > * {
-    flex-shrink: 0;
-}
-.app-header .account-info {
-    min-width: 0 !important;
-    max-width: 100% !important;
-}
-.app-header .novatrade-currency-chip,
-.app-header .novatrade-phone-action {
-    flex-shrink: 0 !important;
-}
-.novatrade-market-ticker {
-    display: flex !important;
-    width: 100% !important;
-    min-height: 3.8rem !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: #c62828 !important;
-    color: #fff !important;
-    position: relative !important;
-    z-index: 19;
-}
-.novatrade-market-ticker__track {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    will-change: transform;
-}
-.novatrade-market-ticker__close {
-    background: #a91f1f !important;
-    color: #fff !important;
-    flex-shrink: 0 !important;
-}
 @media (max-width: 767px) {
     .app-header {
-        min-height: 7rem !important;
-    }
-    .app-header > div {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        width: 100% !important;
-        min-height: 7rem !important;
-        padding: 0 1rem !important;
-        gap: 0.5rem !important;
-    }
-    .app-header [class*='left'] {
-        display: flex !important;
-        flex: 1 1 auto !important;
-        width: auto !important;
-        overflow: visible !important;
-        gap: 0.55rem !important;
-    }
-    .app-header [class*='right'] {
-        display: flex !important;
-        flex: 0 0 auto !important;
-        width: auto !important;
-        max-width: 55% !important;
-        overflow: visible !important;
-    }
-    .app-header .app-logo,
-    .app-header [class*='app-logo'] {
-        max-width: 7.5rem;
-        flex-shrink: 1 !important;
-    }
-    .app-header .auth-actions {
-        gap: 0.55rem !important;
-    }
-    .app-header .auth-actions button {
-        min-height: 3.7rem !important;
-        padding: 0 1.3rem !important;
-        font-size: 1.3rem !important;
-    }
-    .app-header .account-info {
-        gap: 0.25rem !important;
-    }
-    .app-header .acc-info__balance {
-        font-size: 1.45rem !important;
-    }
-    .novatrade-country-flag { font-size: 2.5rem !important; }
-    .novatrade-currency-chip {
-        gap: 0.2rem !important;
-        padding: 0.35rem !important;
-        font-size: 1rem !important;
-    }
-    .novatrade-phone-action {
-        width: 2.3rem !important;
-        height: 2.8rem !important;
-    }
-    .novatrade-phone-action svg { width: 2.2rem !important; height: 2.2rem !important; }
-    .novatrade-market-ticker { min-height: 3.4rem !important; font-size: 1.05rem !important; }
-}
-
-
-/* Correct mobile composition to match the reference: ONE mint toolbar row.
-   The header component's left and right Wrapper children must sit side-by-side;
-   giving each child width:100% was the cause of the stacked/overlapping layout. */
-@media (max-width: 767px) {
-    .app-header {
-        display: flex !important;
-        flex-flow: row nowrap !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        width: 100% !important;
-        min-width: 0 !important;
-        min-height: 10rem !important;
-        height: 10rem !important;
-        padding: 0 1.6rem !important;
-        gap: 1.2rem !important;
-        overflow: visible !important;
-        background: #eafff5 !important;
-    }
-
-    /* Header's first and second wrappers share the same horizontal line. */
-    .app-header > div {
-        display: flex !important;
-        flex-flow: row nowrap !important;
-        align-items: center !important;
         justify-content: flex-start !important;
-        width: auto !important;
-        max-width: none !important;
-        min-width: 0 !important;
-        min-height: 10rem !important;
-        height: 10rem !important;
-        padding: 0 !important;
-        gap: 1.6rem !important;
-        overflow: visible !important;
-        flex: 0 1 auto !important;
-    }
-    .app-header > div:first-child {
-        flex: 1 1 auto !important;
-        gap: 1.8rem !important;
-    }
-    .app-header > div:last-child {
-        flex: 0 0 auto !important;
-        margin-left: auto !important;
-        justify-content: flex-end !important;
-    }
-
-    /* The reference bar uses the hamburger, not a large logo taking space. */
-    .app-header .app-logo,
-    .app-header [class*='app-logo'],
-    .app-header a[aria-label*='logo'] {
-        display: none !important;
-    }
-
-    .app-header .mobile-menu {
-        display: flex !important;
-        align-items: center !important;
-        flex: 0 0 3.2rem !important;
-        width: 3.2rem !important;
-        height: 100% !important;
-    }
-    .app-header .mobile-menu__toggle {
-        padding: 0 !important;
-        border: 0 !important;
-        width: 3.2rem !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    .app-header .novatrade-currency-chip {
-        flex: 0 0 auto !important;
-        margin: 0 !important;
-        min-height: 3.8rem !important;
-        padding: 0.45rem 0.55rem !important;
-        font-size: 1.2rem !important;
-    }
-    .app-header .novatrade-phone-action {
-        flex: 0 0 3.2rem !important;
-        width: 3.2rem !important;
-        height: 3.6rem !important;
-        margin: 0 !important;
-    }
-    .app-header .auth-actions {
-        display: flex !important;
-        flex-flow: row nowrap !important;
-        align-items: center !important;
-        gap: 1rem !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    .app-header .account-info {
-        display: flex !important;
-        flex-flow: row nowrap !important;
-        align-items: center !important;
-        gap: 0.4rem !important;
-        min-width: 0 !important;
-        overflow: visible !important;
-    }
-    .app-header .novatrade-country-flag {
-        display: inline-block !important;
-        flex: 0 0 auto !important;
-        font-size: 3.2rem !important;
-    }
-    .app-header .acc-info {
-        width: auto !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        flex: 0 1 auto !important;
-    }
-    .app-header .acc-info__balance {
-        font-size: 1.8rem !important;
-        line-height: 1.2 !important;
-        white-space: nowrap !important;
-    }
-    .app-header .auth-actions button {
-        flex: 0 0 auto !important;
-        min-height: 4.4rem !important;
-        padding: 0 2rem !important;
-        border-radius: 3rem !important;
-        font-size: 1.5rem !important;
-        white-space: nowrap !important;
-        background: #7c3aed !important;
-        color: #fff !important;
-    }
-    .novatrade-market-ticker {
-        width: 100% !important;
-        min-height: 3.6rem !important;
-        height: 3.6rem !important;
-        margin: 0 !important;
-        clear: both !important;
-        position: relative !important;
-        z-index: 21 !important;
-    }
-}
-
-@media (max-width: 420px) {
-    .app-header {
-        padding: 0 0.8rem !important;
-        gap: 0.6rem !important;
-    }
-    .app-header > div:first-child {
         gap: 0.8rem !important;
+        min-height: 6.4rem !important;
+        padding: 0 0.8rem !important;
+        -webkit-overflow-scrolling: touch;
     }
-    .app-header > div:last-child {
-        max-width: 58% !important;
-    }
-    .app-header .auth-actions {
-        gap: 0.5rem !important;
-    }
-    .app-header .novatrade-country-flag {
-        font-size: 2.5rem !important;
-    }
-    .app-header .acc-info__balance {
-        font-size: 1.4rem !important;
-    }
-    .app-header .auth-actions button {
-        min-height: 3.8rem !important;
-        padding: 0 1.2rem !important;
-        font-size: 1.3rem !important;
-    }
-    .app-header .novatrade-phone-action {
-        width: 2.4rem !important;
-        flex-basis: 2.4rem !important;
-    }
-}
-
-
-/* Use explicit app-owned groups rather than the UI library's responsive Wrapper.
-   This prevents account controls from dropping below the currency row on mobile. */
-.app-header {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    min-height: 7.2rem !important;
-    height: auto !important;
-    padding: 0 1.2rem !important;
-    gap: 1rem !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
-    background: #eafff5 !important;
-    color: #173a38 !important;
-}
-.app-header > .novatrade-topbar-left,
-.app-header > .novatrade-topbar-right {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    min-width: 0 !important;
-    min-height: 7.2rem !important;
-    height: auto !important;
-    padding: 0 !important;
-    gap: 1rem !important;
-    background: transparent !important;
-    box-sizing: border-box !important;
-}
-.app-header > .novatrade-topbar-left {
-    flex: 1 1 auto !important;
-    justify-content: flex-start !important;
-}
-.app-header > .novatrade-topbar-right {
-    flex: 0 0 auto !important;
-    justify-content: flex-end !important;
-    margin-left: auto !important;
-}
-.app-header .app-logo,
-.app-header [class*='app-logo'] {
-    flex: 0 1 auto !important;
-    max-width: 10rem !important;
-}
-.app-header .novatrade-currency-chip {
-    flex: 0 0 auto !important;
-    margin: 0 !important;
-}
-.app-header .novatrade-phone-action {
-    flex: 0 0 auto !important;
-}
-.app-header .auth-actions {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    min-width: 0 !important;
-}
-.app-header .account-info {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-    min-width: 0 !important;
-}
-.app-header .acc-info__balance {
-    color: #009e95 !important;
-    font-size: 1.9rem !important;
-    font-weight: 800 !important;
-    white-space: nowrap !important;
-}
-.app-header .auth-actions button {
-    flex: 0 0 auto !important;
-    min-height: 4.2rem !important;
-    padding: 0 2rem !important;
-    border: 0 !important;
-    border-radius: 3rem !important;
-    background: #7c3aed !important;
-    color: #fff !important;
-    white-space: nowrap !important;
-    box-shadow: none !important;
-}
-.novatrade-market-ticker {
-    width: 100% !important;
-    min-height: 3.6rem !important;
-    height: 3.6rem !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    background: #c62828 !important;
-    color: #fff !important;
-}
-@media (max-width: 767px) {
-    .app-header {
-        min-height: 5.8rem !important;
-        padding: 0 1rem !important;
-        gap: 0.7rem !important;
-    }
-    .app-header > .novatrade-topbar-left,
-    .app-header > .novatrade-topbar-right {
-        min-height: 5.8rem !important;
-        gap: 0.65rem !important;
-    }
-    .app-header > .novatrade-topbar-left {
-        flex: 0 1 auto !important;
-    }
-    .app-header > .novatrade-topbar-right {
-        flex: 1 1 auto !important;
-        margin-left: 0 !important;
-        justify-content: flex-end !important;
-    }
-    .app-header .app-logo,
-    .app-header [class*='app-logo'] {
-        display: none !important;
-    }
-    .app-header .novatrade-currency-chip {
-        padding: 0.35rem !important;
-        gap: 0.2rem !important;
-        font-size: 1rem !important;
-        line-height: 1.2 !important;
-    }
-    .app-header .novatrade-phone-action {
-        width: 2.4rem !important;
-        height: 2.8rem !important;
-    }
-    .app-header .novatrade-phone-action svg {
-        width: 2.3rem !important;
-        height: 2.3rem !important;
-    }
-    .app-header .auth-actions {
-        gap: 0.45rem !important;
-    }
-    .app-header .auth-actions button {
-        min-height: 3.5rem !important;
-        padding: 0 1.1rem !important;
-        font-size: 1.25rem !important;
-    }
-    .app-header .account-info {
-        gap: 0.25rem !important;
-    }
-    .app-header .novatrade-country-flag {
-        font-size: 2.5rem !important;
-    }
-    .app-header .acc-info__balance {
-        font-size: 1.35rem !important;
-    }
-}
-@media (max-width: 380px) {
-    .app-header { padding: 0 0.5rem !important; gap: 0.35rem !important; }
-    .app-header > .novatrade-topbar-left,
-    .app-header > .novatrade-topbar-right { gap: 0.35rem !important; }
-    .app-header .novatrade-currency-chip { font-size: 0.9rem !important; }
-    .app-header .novatrade-phone-action { width: 2rem !important; flex-basis: 2rem !important; }
-    .app-header .novatrade-country-flag { font-size: 2.1rem !important; }
-    .app-header .acc-info__balance { font-size: 1.15rem !important; }
-    .app-header .auth-actions button { padding: 0 0.8rem !important; font-size: 1.1rem !important; }
-}
-
-
-/* Visibility recovery: keep the announcement strip visible and reserve real
-   space for the account controls. Do not fabricate account balances or auth. */
-.novatrade-market-ticker {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    width: 100% !important;
-    min-width: 100% !important;
-    height: 3.8rem !important;
-    min-height: 3.8rem !important;
-    overflow: hidden !important;
-    background: #c62828 !important;
-    color: #ffffff !important;
-    z-index: 30 !important;
-}
-.novatrade-market-ticker__track {
-    display: flex !important;
-    align-items: center !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    min-width: max-content !important;
-    color: #ffffff !important;
-}
-.app-header > .novatrade-topbar-right {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: visible !important;
-    min-width: max-content !important;
-    max-width: none !important;
-    flex-shrink: 0 !important;
-}
-.app-header > .novatrade-topbar-right:empty {
-    display: none !important;
-}
-.app-header .auth-actions,
-.app-header .account-info {
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-@media (max-width: 767px) {
-    .app-header {
-        height: auto !important;
-        min-height: 6.8rem !important;
-        padding: 0 0.7rem !important;
-        gap: 0.5rem !important;
-    }
-    .app-header > .novatrade-topbar-left {
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-        gap: 0.55rem !important;
-    }
-    .app-header > .novatrade-topbar-right {
-        flex: 0 0 auto !important;
-        width: auto !important;
-        min-width: 0 !important;
-        margin-left: auto !important;
-        gap: 0.45rem !important;
-    }
+    .app-header .novatrade-topbar-left,
+    .app-header .novatrade-topbar-right { gap: 0.7rem !important; }
+    .app-header .auth-actions { gap: 0.7rem !important; }
     .app-header .auth-actions button {
         min-height: 3.4rem !important;
-        padding: 0 0.9rem !important;
-        font-size: 1.15rem !important;
+        padding: 0 1.3rem !important;
+        font-size: 1.2rem !important;
     }
-    .app-header .novatrade-country-flag { font-size: 2.25rem !important; }
-    .app-header .acc-info__balance { font-size: 1.2rem !important; }
-    .novatrade-market-ticker { height: 3.4rem !important; min-height: 3.4rem !important; }
-}
-
-
-/* Header and announcement colors must not inherit theme colors.
-   Explicit high-contrast brand surfaces work in both light and dark mode. */
-.app-header,
-.theme--light .app-header,
-.theme--dark .app-header {
-    background: #10233f !important;
-    color: #f8fafc !important;
-    border-bottom: 1px solid #284263 !important;
-}
-.app-header > .novatrade-topbar-left,
-.app-header > .novatrade-topbar-right {
-    background: transparent !important;
-    color: #f8fafc !important;
-}
-.app-header .novatrade-currency-chip {
-    background: #e5edf8 !important;
-    color: #10233f !important;
-    border: 1px solid #b7c8df !important;
-    border-radius: 0.8rem !important;
-}
-.app-header .novatrade-currency-chip__active {
-    background: #0d9488 !important;
-    color: #ffffff !important;
-    border-radius: 0.45rem !important;
-}
-.app-header .novatrade-currency-chip__muted {
-    color: #334155 !important;
-}
-.app-header .novatrade-phone-action {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: #dbeafe !important;
-    color: #12345a !important;
-    border-radius: 50% !important;
-}
-.app-header .novatrade-phone-action svg {
-    fill: currentColor !important;
-}
-.app-header .account-info,
-.app-header .account-info *,
-.app-header .acc-info,
-.app-header .acc-info * {
-    color: #f8fafc !important;
-}
-.app-header .acc-info__balance {
-    color: #5eead4 !important;
-}
-.app-header .account-info button,
-.app-header .account-info [role='button'] {
-    color: #ffffff !important;
-}
-.app-header .auth-actions button {
-    background: #6d28d9 !important;
-    color: #ffffff !important;
-    border: 1px solid #8b5cf6 !important;
-}
-.novatrade-market-ticker,
-.theme--light .novatrade-market-ticker,
-.theme--dark .novatrade-market-ticker {
-    background: #b91c1c !important;
-    color: #ffffff !important;
-    border-top: 1px solid #f87171 !important;
-    border-bottom: 1px solid #7f1d1d !important;
-}
-.novatrade-market-ticker *,
-.novatrade-market-ticker__track {
-    color: #ffffff !important;
-}
-.theme--light .main__tabs,
-.theme--dark .main__tabs {
-    background: #172b49 !important;
-    color: #f8fafc !important;
-    border-bottom: 1px solid #304968 !important;
-}
-.theme--light .main__tabs *,
-.theme--dark .main__tabs * {
-    color: inherit;
+    .app-header .acc-info__balance { font-size: 1.45rem !important; }
+    .novatrade-country-flag { font-size: 2.4rem; }
+    .novatrade-currency-chip {
+        min-height: 3rem !important;
+        padding: 0.3rem 0.4rem !important;
+        gap: 0.25rem !important;
+        font-size: 1.05rem !important;
+    }
+    .novatrade-phone-action { width: 2.5rem !important; height: 2.8rem !important; }
+    .novatrade-phone-action svg { width: 2.3rem; height: 2.3rem; }
+    .novatrade-market-ticker { min-height: 3.2rem !important; font-size: 1.05rem !important; }
 }
