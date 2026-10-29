@@ -18,6 +18,17 @@ const Layout = observer(() => {
     const { isDesktop } = useDevice();
     const store = useStore();
     const { activeLoginid } = useApiBase();
+    const [oauthLoginid, setOAuthLoginid] = useState('');
+    const resolvedLoginid = activeLoginid || oauthLoginid;
+
+    useEffect(() => {
+        const handleOAuthAccountReady = (event: Event) => {
+            const loginid = (event as CustomEvent<string>).detail;
+            if (loginid) setOAuthLoginid(loginid);
+        };
+        window.addEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
+        return () => window.removeEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
+    }, []);
     // Keep the pre-login page accessible immediately; the decorative splash must not block login.
     const [showStartupSplash, setShowStartupSplash] = useState(false);
     const is_quick_strategy_active = store?.quick_strategy?.is_open;
@@ -36,13 +47,13 @@ const Layout = observer(() => {
     const [isAuthenticating, setIsAuthenticating] = useState(true); // Start with true to prevent flashing
 
     useEffect(() => {
-        if (isCallbackPage || activeLoginid) {
+        if (isCallbackPage || resolvedLoginid) {
             setShowStartupSplash(false);
             return;
         }
         const timer = window.setTimeout(() => setShowStartupSplash(false), 3200);
         return () => window.clearTimeout(timer);
-    }, [isCallbackPage, activeLoginid]);
+    }, [isCallbackPage, resolvedLoginid]);
 
     // Expose setClientHasCurrency to window for global access
     useEffect(() => {
@@ -168,7 +179,7 @@ const Layout = observer(() => {
                 <Outlet />
             </Body>
             {!isCallbackPage && isDesktop && <Footer />}
-            {!activeLoginid && !isCallbackPage && (showStartupSplash ? (
+            {!resolvedLoginid && !isCallbackPage && (showStartupSplash ? (
                 <NovaTradeLoading status='Connecting to Volatility Markets...' fullscreen />
             ) : (
                 <div className='om-landing-overlay'>
