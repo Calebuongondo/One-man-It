@@ -14,17 +14,34 @@ import PreLoginLanding from './pre-login-landing';
 import NovaTradeLoading from '../novatrade-loading';
 import './layout.scss';
 
+const getStoredOAuthLoginid = (): string => {
+    try {
+        const rawAuthInfo = sessionStorage.getItem('auth_info');
+        const authInfo = rawAuthInfo ? JSON.parse(rawAuthInfo) : null;
+        const isTokenValid = !!authInfo?.access_token && (!authInfo.expires_at || Date.now() < authInfo.expires_at);
+        if (!isTokenValid) return '';
+        return sessionStorage.getItem('novatrade_oauth_loginid') || localStorage.getItem('active_loginid') || '';
+    } catch {
+        return '';
+    }
+};
+
 const Layout = observer(() => {
     const { isDesktop } = useDevice();
     const store = useStore();
     const { activeLoginid } = useApiBase();
-    const [oauthLoginid, setOAuthLoginid] = useState('');
+    // Recover the OAuth account synchronously so a Layout remount cannot briefly
+    // uncover the landing/loading overlay after the OAuth callback has completed.
+    const [oauthLoginid, setOAuthLoginid] = useState(getStoredOAuthLoginid);
     const resolvedLoginid = activeLoginid || oauthLoginid;
 
     useEffect(() => {
         const handleOAuthAccountReady = (event: Event) => {
             const loginid = (event as CustomEvent<string>).detail;
-            if (loginid) setOAuthLoginid(loginid);
+            if (loginid) {
+                sessionStorage.setItem('novatrade_oauth_loginid', loginid);
+                setOAuthLoginid(loginid);
+            }
         };
         window.addEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
         return () => window.removeEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
