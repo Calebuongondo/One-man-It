@@ -240,6 +240,20 @@ const AppHeader = observer(() => {
                 </Wrapper>
                 <Wrapper variant='right'>{renderAccountSection('right')}</Wrapper>
             </Header>
+            {!isDesktop && (
+                <div
+                    className='oneman-trade-mobile-navigation'
+                    style={{
+                        width: '100%',
+                        maxWidth: '100%',
+                        overflow: 'hidden',
+                        borderBottom: '1px solid var(--border-normal, #d7dce0)',
+                        background: 'var(--general-main-1, #fff)',
+                    }}
+                >
+                    <MenuItems />
+                </div>
+            )}
         </>
     );
 });
