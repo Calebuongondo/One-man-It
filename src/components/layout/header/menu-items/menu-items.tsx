@@ -8,6 +8,7 @@
 // EXAMPLE USAGE:
 // --------------
 // import { observer } from 'mobx-react-lite';
+import { useDevice } from '@deriv-com/ui';
 // import { useStore } from '@/hooks/useStore';
 // import { useTranslations } from '@deriv-com/translations';
 // import { MenuItem, Text } from '@deriv-com/ui';
