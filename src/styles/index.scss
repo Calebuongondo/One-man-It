@@ -76,3 +76,69 @@ body {
     background-color: #202832 !important;
     color: #f2f5f8 !important;
 }
+
+
+/* Professional NovaTrade workspace palette: cool slate in light mode and
+   deep blue-charcoal in dark mode. Keep the mint account bar and blue accents. */
+.theme--light {
+    --general-main-1: #f5f7fb;
+    --general-main-2: #ffffff;
+    --general-main-3: #e9eef5;
+    --general-section-1: #ffffff;
+    --general-section-2: #f3f6fa;
+    --general-section-3: #e7edf4;
+    --general-section-4: #dce4ed;
+    --general-section-5: #f5f7fb;
+    --general-section-6: #eef2f7;
+    --general-hover: #eaf0f7;
+    --general-active: #dce7f3;
+    --text-general: #172538;
+    --text-prominent: #101e30;
+    --text-less-prominent: #526276;
+    --border-normal: #d8e1eb;
+    --border-divider: #e2e8f0;
+    background-color: #f5f7fb;
+}
+.theme--dark {
+    --general-main-1: #0b1220;
+    --general-main-2: #111b2b;
+    --general-main-3: #1a2739;
+    --general-section-1: #111b2b;
+    --general-section-2: #152235;
+    --general-section-3: #1c2b40;
+    --general-section-4: #26364b;
+    --general-section-5: #111b2b;
+    --general-section-6: #17263a;
+    --general-hover: #1d2d42;
+    --general-active: #263a52;
+    --text-general: #edf3fa;
+    --text-prominent: #ffffff;
+    --text-less-prominent: #bdcad9;
+    --border-normal: #304157;
+    --border-divider: #27384d;
+    background-color: #0b1220;
+}
+.theme--light body,
+.theme--light #root,
+.theme--light .app,
+.theme--light .main,
+.theme--light .main__content {
+    background-color: #f5f7fb !important;
+    color: #172538;
+}
+.theme--dark body,
+.theme--dark #root,
+.theme--dark .app,
+.theme--dark .main,
+.theme--dark .main__content {
+    background-color: #0b1220 !important;
+    color: #edf3fa;
+}
+.theme--light :is(.dc-card, .card, .bot-dashboard, .main__content-card) {
+    background-color: #ffffff;
+    border-color: #dfe7f0;
+}
+.theme--dark :is(.dc-card, .card, .bot-dashboard, .main__content-card) {
+    background-color: #111b2b;
+    border-color: #2b3c52;
+}
