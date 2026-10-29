@@ -996,3 +996,163 @@
         flex-basis: 2.4rem !important;
     }
 }
+
+
+/* Use explicit app-owned groups rather than the UI library's responsive Wrapper.
+   This prevents account controls from dropping below the currency row on mobile. */
+.app-header {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 7.2rem !important;
+    height: auto !important;
+    padding: 0 1.2rem !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    background: #eafff5 !important;
+    color: #173a38 !important;
+}
+.app-header > .novatrade-topbar-left,
+.app-header > .novatrade-topbar-right {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    min-height: 7.2rem !important;
+    height: auto !important;
+    padding: 0 !important;
+    gap: 1rem !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+}
+.app-header > .novatrade-topbar-left {
+    flex: 1 1 auto !important;
+    justify-content: flex-start !important;
+}
+.app-header > .novatrade-topbar-right {
+    flex: 0 0 auto !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+}
+.app-header .app-logo,
+.app-header [class*='app-logo'] {
+    flex: 0 1 auto !important;
+    max-width: 10rem !important;
+}
+.app-header .novatrade-currency-chip {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+}
+.app-header .novatrade-phone-action {
+    flex: 0 0 auto !important;
+}
+.app-header .auth-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    min-width: 0 !important;
+}
+.app-header .account-info {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    min-width: 0 !important;
+}
+.app-header .acc-info__balance {
+    color: #009e95 !important;
+    font-size: 1.9rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+}
+.app-header .auth-actions button {
+    flex: 0 0 auto !important;
+    min-height: 4.2rem !important;
+    padding: 0 2rem !important;
+    border: 0 !important;
+    border-radius: 3rem !important;
+    background: #7c3aed !important;
+    color: #fff !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+}
+.novatrade-market-ticker {
+    width: 100% !important;
+    min-height: 3.6rem !important;
+    height: 3.6rem !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    background: #c62828 !important;
+    color: #fff !important;
+}
+@media (max-width: 767px) {
+    .app-header {
+        min-height: 5.8rem !important;
+        padding: 0 1rem !important;
+        gap: 0.7rem !important;
+    }
+    .app-header > .novatrade-topbar-left,
+    .app-header > .novatrade-topbar-right {
+        min-height: 5.8rem !important;
+        gap: 0.65rem !important;
+    }
+    .app-header > .novatrade-topbar-left {
+        flex: 0 1 auto !important;
+    }
+    .app-header > .novatrade-topbar-right {
+        flex: 1 1 auto !important;
+        margin-left: 0 !important;
+        justify-content: flex-end !important;
+    }
+    .app-header .app-logo,
+    .app-header [class*='app-logo'] {
+        display: none !important;
+    }
+    .app-header .novatrade-currency-chip {
+        padding: 0.35rem !important;
+        gap: 0.2rem !important;
+        font-size: 1rem !important;
+        line-height: 1.2 !important;
+    }
+    .app-header .novatrade-phone-action {
+        width: 2.4rem !important;
+        height: 2.8rem !important;
+    }
+    .app-header .novatrade-phone-action svg {
+        width: 2.3rem !important;
+        height: 2.3rem !important;
+    }
+    .app-header .auth-actions {
+        gap: 0.45rem !important;
+    }
+    .app-header .auth-actions button {
+        min-height: 3.5rem !important;
+        padding: 0 1.1rem !important;
+        font-size: 1.25rem !important;
+    }
+    .app-header .account-info {
+        gap: 0.25rem !important;
+    }
+    .app-header .novatrade-country-flag {
+        font-size: 2.5rem !important;
+    }
+    .app-header .acc-info__balance {
+        font-size: 1.35rem !important;
+    }
+}
+@media (max-width: 380px) {
+    .app-header { padding: 0 0.5rem !important; gap: 0.35rem !important; }
+    .app-header > .novatrade-topbar-left,
+    .app-header > .novatrade-topbar-right { gap: 0.35rem !important; }
+    .app-header .novatrade-currency-chip { font-size: 0.9rem !important; }
+    .app-header .novatrade-phone-action { width: 2rem !important; flex-basis: 2rem !important; }
+    .app-header .novatrade-country-flag { font-size: 2.1rem !important; }
+    .app-header .acc-info__balance { font-size: 1.15rem !important; }
+    .app-header .auth-actions button { padding: 0 0.8rem !important; font-size: 1.1rem !important; }
+}
