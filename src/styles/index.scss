@@ -21,3 +21,58 @@ body {
         }
     }
 }
+
+
+/* Contrast safety net: keep text, form controls, placeholders and disabled
+   labels readable in both app themes without overriding colored action buttons. */
+.theme--light {
+    --text-general: #17212b;
+    --text-prominent: #101820;
+    --text-less-prominent: #465563;
+    --text-disabled: #5b6570;
+    --text-disabled-1: #5b6570;
+    --text-hint: #465563;
+    --general-disabled: #e5e9ed;
+    color: #17212b;
+}
+.theme--dark {
+    --text-general: #f2f5f8;
+    --text-prominent: #ffffff;
+    --text-less-prominent: #c4cdd6;
+    --text-disabled: #aab4bf;
+    --text-disabled-1: #aab4bf;
+    --text-hint: #c4cdd6;
+    --general-disabled: #303943;
+    color: #f2f5f8;
+}
+.theme--light :is(input, textarea, select, option) {
+    color: #17212b !important;
+    background-color: #ffffff;
+    caret-color: #17212b;
+}
+.theme--dark :is(input, textarea, select, option) {
+    color: #f2f5f8 !important;
+    background-color: #202832;
+    caret-color: #ffffff;
+}
+:is(.theme--light, .theme--dark) :is(input, textarea)::placeholder {
+    color: var(--text-less-prominent) !important;
+    opacity: 1 !important;
+}
+:is(.theme--light, .theme--dark) :is(button, [role='button'], a, label) {
+    -webkit-tap-highlight-color: transparent;
+}
+.theme--light :is(.dc-input, .dc-input__container, .dc-dropdown, .dc-popover__content) {
+    color: #17212b;
+}
+.theme--dark :is(.dc-input, .dc-input__container, .dc-dropdown, .dc-popover__content) {
+    color: #f2f5f8;
+}
+.theme--light :is(.dc-input, .dc-input__container, .dc-dropdown, .dc-popover__content) :is(input, textarea, select) {
+    background-color: #fff !important;
+    color: #17212b !important;
+}
+.theme--dark :is(.dc-input, .dc-input__container, .dc-dropdown, .dc-popover__content) :is(input, textarea, select) {
+    background-color: #202832 !important;
+    color: #f2f5f8 !important;
+}
