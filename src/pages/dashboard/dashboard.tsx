@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import Text from '@/components/shared_ui/text';
@@ -14,23 +14,16 @@ type TMobileIconGuide = {
     handleTabChange: (active_number: number) => void;
 };
 
-const PLACEHOLDER_TABS = [
-    { label: 'Dashboard', icon: '⌂' },
-    { label: 'Bot Builder', icon: '⚙' },
-    { label: 'Trading Bots', icon: '▣' },
-    { label: 'Bulk Trader', icon: '⇄' },
-    { label: 'Pro AI', icon: '✧' },
-    { label: 'Dual Edge', icon: '⟳' },
-    { label: 'Analysis Tool', icon: '⌕' },
-    { label: 'Copy Trading', icon: '▤' },
-    { label: 'Charts', icon: '⌁' },
-    { label: 'Risk Calculator', icon: '▦' },
-    { label: 'Manual Trader', icon: '✎' },
-    { label: 'TradingView', icon: '♧' },
-];
-
 const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
     const [activePlaceholderTab, setActivePlaceholderTab] = useState('Dashboard');
+    useEffect(() => {
+        const handlePlaceholderTab = (event: Event) => {
+            const tab = (event as CustomEvent<string>).detail;
+            if (tab) setActivePlaceholderTab(tab);
+        };
+        window.addEventListener('novatrade:placeholder-tab', handlePlaceholderTab);
+        return () => window.removeEventListener('novatrade:placeholder-tab', handlePlaceholderTab);
+    }, []);
     const { load_modal, dashboard, client } = useStore();
     const { dashboard_strategies } = load_modal;
     const { active_tab, active_tour } = dashboard;
@@ -39,20 +32,6 @@ const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
 
     return (
         <React.Fragment>
-            <nav aria-label='OneMan Trade placeholder tabs' style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: 0, overflowX: 'auto', whiteSpace: 'nowrap', background: '#071c2b', borderBottom: '1px solid #254254', margin: '0 0 16px', minHeight: 48, scrollbarWidth: 'thin' }}>
-                {PLACEHOLDER_TABS.map(tab => (
-                    <button
-                        key={tab.label}
-                        type='button'
-                        onClick={() => setActivePlaceholderTab(tab.label)}
-                        aria-current={activePlaceholderTab === tab.label ? 'page' : undefined}
-                        style={{ display: 'inline-flex', flex: '0 0 auto', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, padding: '12px 13px', minHeight: 48, border: 0, borderRight: '1px solid #254254', background: activePlaceholderTab === tab.label ? '#19457d' : 'transparent', color: '#f4f7fb', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}
-                    >
-                        <span aria-hidden='true' style={{ display: 'inline-block', fontSize: 17, lineHeight: 1, color: '#38b9f2' }}>{tab.icon}</span>
-                        <span>{tab.label}</span>
-                    </button>
-                ))}
-            </nav>
             {activePlaceholderTab === 'Dashboard' ? <>
             <div
                 className={classNames('tab__dashboard', {
