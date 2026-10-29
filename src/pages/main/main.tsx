@@ -46,6 +46,81 @@ import './main.scss';
 const ChartWrapper = lazy(() => import('../chart/chart-wrapper'));
 const Tutorial = lazy(() => import('../tutorials'));
 
+
+type NovaTradeToolProps = { name: string };
+
+const NovaTradeTool = ({ name }: NovaTradeToolProps) => {
+    const [capital, setCapital] = useState('100');
+    const [risk, setRisk] = useState('2');
+    const [trades, setTrades] = useState('5');
+    const [stake, setStake] = useState('1');
+    const [target, setTarget] = useState('55');
+    const [market, setMarket] = useState('Volatility 75 Index');
+    const [notes, setNotes] = useState('');
+    const [saved, setSaved] = useState(false);
+    const [result, setResult] = useState('');
+    const n = (v: string) => Number.isFinite(Number(v)) ? Number(v) : 0;
+    const money = (v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    const panel: React.CSSProperties = { padding: '24px', color: 'var(--text-general)', maxWidth: 900, margin: '0 auto', width: '100%', boxSizing: 'border-box' };
+    const fieldStyle: React.CSSProperties = { display: 'grid', gap: 6, minWidth: 0, color: 'var(--text-general)', fontSize: 14 };
+    const inputStyle: React.CSSProperties = { width: '100%', boxSizing: 'border-box', minHeight: 44, border: '1px solid var(--border-normal)', borderRadius: 8, padding: '10px 12px', background: 'var(--general-section-1)', color: 'var(--text-prominent)', fontSize: 16 };
+    const buttonStyle: React.CSSProperties = { minHeight: 44, padding: '10px 16px', border: 0, borderRadius: 8, background: '#c91f32', color: '#fff', fontWeight: 700, cursor: 'pointer' };
+    const field = (label: string, value: string, onChange: (value: string) => void, type = 'number') => <label style={fieldStyle}>{label}<input style={inputStyle} type={type} value={value} onChange={event => onChange(event.target.value)} /></label>;
+    const runTool = () => {
+        setSaved(false);
+        if (name === 'Risk Calculator') {
+            const budget = Math.max(0, n(capital) * n(risk) / 100);
+            setResult(`Risk budget: ${money(budget)} per trade. At ${money(n(stake))} stake, ${budget > 0 && n(stake) > 0 ? Math.floor(budget / n(stake)) : 0} stake units fit within that budget.`);
+        } else if (name === 'Bulk Trader') {
+            setResult(`Planned combined stake: ${money(Math.max(0, n(stake) * Math.floor(Math.max(0, n(trades)))))} across ${Math.floor(Math.max(0, n(trades)))} entries. This calculates a plan only; it does not submit orders.`);
+        } else if (name === 'Dual Edge') {
+            setResult(`Risk budget: ${money(Math.max(0, n(capital) * n(risk) / 100))}. Target amount at ${n(target)}%: ${money(Math.max(0, n(capital) * n(target) / 100))}. These are user-defined scenarios, not a prediction.`);
+        } else if (name === 'Analysis Tool') {
+            const winRate = Math.min(100, Math.max(0, n(target)));
+            const expectancy = winRate / 100 * Math.max(0, n(stake)) - (1 - winRate / 100) * Math.max(0, n(risk));
+            setResult(`Estimated expectancy: ${money(expectancy)} stake units per trade, using ${winRate}% win rate, average win ${money(n(stake))}, and average loss ${money(n(risk))}.`);
+        } else if (name === 'Pro AI') {
+            setResult(`Strategy checklist for ${market}: write entry and exit rules, set a maximum loss before entry, test the rules on a demo account, and never raise stake to recover losses. This is a checklist, not an AI prediction.`);
+        } else if (name === 'Manual Trader') {
+            setResult(`Trade plan for ${market}: stake ${money(n(stake))}; planning risk cap ${money(Math.max(0, n(capital) * n(risk) / 100))}. Review the broker's order controls before placing any live trade. This panel does not submit live orders.`);
+        } else if (name === 'Trading Bots') {
+            const plan = { name: notes.trim() || 'My bot plan', market, stake: n(stake), riskPercent: n(risk), createdAt: new Date().toISOString() };
+            try {
+                const old = JSON.parse(localStorage.getItem('novatrade-bot-plans') || '[]');
+                localStorage.setItem('novatrade-bot-plans', JSON.stringify([plan, ...old].slice(0, 20)));
+                setResult(`Saved “${plan.name}” on this device. Market: ${market}; stake: ${money(plan.stake)}; risk cap: ${plan.riskPercent}%.`);
+                setSaved(true);
+            } catch { setResult('Unable to save on this device. Check browser storage permissions.'); }
+        } else if (name === 'Copy Trading') {
+            setResult(`Copy-trading checklist: verify the provider's history, set a maximum loss of ${money(Math.max(0, n(capital) * n(risk) / 100))}, test on demo first, and never share account credentials. No external provider is connected here.`);
+        } else if (name === 'TradingView') {
+            setResult('Use the Charts tab for the integrated chart workspace. Select a market there, then return here to record notes about your analysis.');
+        }
+    };
+    const riskCalc = name === 'Risk Calculator';
+    const bulk = name === 'Bulk Trader';
+    const dual = name === 'Dual Edge';
+    const analysis = name === 'Analysis Tool';
+    return <section style={panel} aria-label={name}>
+        <h2 style={{ margin: '4px 0 8px', fontSize: 24, lineHeight: 1.25, color: 'var(--text-prominent)' }}>{name}</h2>
+        <p style={{ margin: '0 0 20px', lineHeight: 1.6, color: 'var(--text-general)' }}>
+            {name === 'Trading Bots' ? 'Create and save a bot plan for review.' : bulk ? 'Calculate the combined stake for a batch.' : name === 'Pro AI' ? 'Build a disciplined, rules-based trading checklist.' : dual ? 'Compare risk and target scenarios.' : analysis ? 'Estimate trade expectancy from your assumptions.' : name === 'Copy Trading' ? 'Review a copy-trading safety checklist.' : riskCalc ? 'Calculate a per-trade risk budget.' : name === 'Manual Trader' ? 'Prepare a plan; live orders remain in broker controls.' : 'Use market notes alongside the integrated Charts workspace.'}
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 14, marginBottom: 16 }}>
+            <label style={fieldStyle}>Market<select style={inputStyle} value={market} onChange={event => setMarket(event.target.value)}><option>Volatility 75 Index</option><option>Volatility 100 Index</option><option>Volatility 50 Index</option><option>Step Index</option><option>EUR/USD</option><option>Gold</option></select></label>
+            {field('Account capital (planning only)', capital, setCapital)}
+            {field(analysis ? 'Win rate (%)' : 'Risk limit (%)', analysis ? target : risk, analysis ? setTarget : setRisk)}
+            {field(analysis ? 'Average win (stake units)' : 'Stake per entry', stake, setStake)}
+            {(bulk || dual) && field(bulk ? 'Number of entries' : 'Target (%)', bulk ? trades : target, bulk ? setTrades : setTarget)}
+            {name === 'Trading Bots' && field('Plan name', notes, setNotes, 'text')}
+            {analysis && field('Average loss (stake units)', risk, setRisk)}
+        </div>
+        <button type='button' style={buttonStyle} onClick={runTool}>{name === 'Trading Bots' ? 'Save bot plan' : bulk ? 'Calculate batch' : riskCalc ? 'Calculate risk' : analysis ? 'Calculate expectancy' : 'Generate plan'}</button>
+        {result && <div role='status' style={{ marginTop: 18, padding: 16, border: '1px solid #c91f32', borderRadius: 12, background: 'var(--general-section-1)', color: 'var(--text-general)', lineHeight: 1.6 }}><strong>{saved ? 'Saved' : 'Result'}</strong><p style={{ margin: '8px 0 0' }}>{result}</p></div>}
+        {name === 'Trading Bots' && <p style={{ fontSize: 12, lineHeight: 1.5, marginTop: 16, color: 'var(--text-less-prominent)' }}>Saved plans stay on this device and are not automatically executed.</p>}
+    </section>;
+};
+
 const AppWrapper = observer(() => {
     const { connectionStatus } = useApiBase();
     const { dashboard, load_modal, run_panel, quick_strategy, summary_card, blockly_store } = useStore();
@@ -457,12 +532,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-trading-bots'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Trading Bots'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Trading Bots'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Trading Bots' />
                             </div>
                             <div
                                 label={
@@ -473,12 +543,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-bulk-trader'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Bulk Trader'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Bulk Trader'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Bulk Trader' />
                             </div>
                             <div
                                 label={
@@ -489,12 +554,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-pro-ai'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Pro AI'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Pro AI'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Pro AI' />
                             </div>
                             <div
                                 label={
@@ -505,12 +565,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-dual-edge'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Dual Edge'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Dual Edge'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Dual Edge' />
                             </div>
                             <div
                                 label={
@@ -521,12 +576,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-analysis-tool'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Analysis Tool'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Analysis Tool'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Analysis Tool' />
                             </div>
                             <div
                                 label={
@@ -537,12 +587,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-copy-trading'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Copy Trading'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Copy Trading'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Copy Trading' />
                             </div>
                             <div
                                 label={
@@ -553,12 +598,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-risk-calculator'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Risk Calculator'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Risk Calculator'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Risk Calculator' />
                             </div>
                             <div
                                 label={
@@ -569,12 +609,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-manual-trader'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Manual Trader'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'Manual Trader'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='Manual Trader' />
                             </div>
                             <div
                                 label={
@@ -585,12 +620,7 @@ const AppWrapper = observer(() => {
                                 }
                                 id='id-novatrade-trading-view'
                             >
-                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
-                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'TradingView'}</h2>
-                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
-                                        This {'TradingView'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
-                                    </p>
-                                </div>
+                                <NovaTradeTool name='TradingView' />
                             </div>
                         </Tabs>
                         {!isDesktop && right_tab_shadow && <span className='tabs-shadow tabs-shadow--right' />}{' '}
