@@ -619,3 +619,17 @@
     .app-header .novatrade-country-flag { font-size: 1.65rem !important; }
     .app-header .acc-info__balance { font-size: 1.05rem !important; }
 }
+
+
+/* Keep account toolbar content legible and prevent the left controls from
+   consuming the whole row on narrow phones. */
+@media (max-width: 767px) {
+    .app-header { background: #eafff5 !important; color: #123b3a !important; }
+    .app-header .novatrade-topbar-left { flex: 0 0 auto !important; }
+    .app-header .novatrade-topbar-right { flex: 1 1 0 !important; min-width: 0 !important; }
+    .app-header .novatrade-topbar-right > * { min-width: 0 !important; }
+    .app-header .acc-info__balance { color: #008f87 !important; }
+    .app-header .novatrade-currency-chip { color: #fff !important; background: #17314b !important; }
+    .app-header .novatrade-phone-action { color: #2196e3 !important; }
+    .novatrade-market-ticker { color: #fff !important; background: #b91c1c !important; }
+}
