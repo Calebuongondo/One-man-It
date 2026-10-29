@@ -122,7 +122,7 @@ const AppContent = observer(() => {
 
         // Never leave the trading workspace behind an infinite loader after OAuth.
         let finished = false;
-        let intervalId: ReturnType<typeof setInterval> | undefined;
+        let intervalId;
         const timeoutId = setTimeout(() => finishLoading('Timed out waiting for active symbols'), 15000);
 
         const finishLoading = (reason?: string) => {
