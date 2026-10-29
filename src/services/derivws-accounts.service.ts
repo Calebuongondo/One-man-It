@@ -131,12 +131,26 @@ export class DerivWSAccountsService {
                 const OptionsDir = brandConfig.platform.derivws.directories.options;
                 const endpoint = `${baseURL}${OptionsDir}accounts`;
 
-                const response = await fetch(endpoint, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
+                // OAuth must not wait forever if the account service stalls.
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 12000);
+                let response: Response;
+                try {
+                    response = await fetch(endpoint, {
+                        method: 'GET',
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                        signal: controller.signal,
+                    });
+                } catch (error) {
+                    if (controller.signal.aborted) {
+                        throw new Error('Deriv account lookup timed out after 12 seconds. Please retry sign-in.');
+                    }
+                    throw error;
+                } finally {
+                    clearTimeout(timeoutId);
+                }
 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch accounts: ${response.status} ${response.statusText}`);
