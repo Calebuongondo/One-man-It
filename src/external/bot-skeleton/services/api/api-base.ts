@@ -64,6 +64,9 @@ class APIBase {
     active_symbols_promise: Promise<any[] | undefined> | null = null;
     common_store: CommonStore | undefined;
     reconnection_attempts: number = 0;
+    // Serialize initial startup and OAuth-triggered reconnects. Concurrent init() calls
+    // can replace each other's WebSocket and leave the UI stuck in a loading state.
+    private initQueue: Promise<void> = Promise.resolve();
 
     // Constants for timeouts - extracted magic numbers for better maintainability
     private readonly ACTIVE_SYMBOLS_TIMEOUT_MS = 10000; // 10 seconds
@@ -150,7 +153,15 @@ class APIBase {
         this.reconnectIfNotConnected();
     }
 
-    async init(force_create_connection = false) {
+    init(force_create_connection = false): Promise<void> {
+        const nextInitialization = this.initQueue.then(() => this.initialize(force_create_connection));
+        // Keep the queue usable after a failed attempt while returning the original
+        // rejection to the caller for normal error handling.
+        this.initQueue = nextInitialization.catch(() => undefined);
+        return nextInitialization;
+    }
+
+    private async initialize(force_create_connection = false) {
         this.toggleRunButton(true);
 
         if (this.api) {
