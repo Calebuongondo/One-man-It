@@ -9,7 +9,7 @@ import { useLogout } from '@/hooks/useLogout';
 import { useStore } from '@/hooks/useStore';
 import { navigateToTransfer } from '@/utils/transfer-utils';
 import { Localize } from '@deriv-com/translations';
-import { Header, useDevice, Wrapper } from '@deriv-com/ui';
+import { Header, useDevice } from '@deriv-com/ui';
 import { AppLogo } from '../app-logo';
 import AccountSwitcher from './account-switcher';
 import MenuItems from './menu-items';
@@ -246,7 +246,7 @@ const AppHeader = observer(() => {
                     'app-header--mobile': !isDesktop,
                 })}
             >
-                <Wrapper variant='left'>
+                <div className='novatrade-topbar-left'>
                     <MobileMenu onLogout={handleLogout} />
                     <AppLogo />
                     <div className='novatrade-currency-chip' aria-label='Currency display'>
@@ -257,8 +257,8 @@ const AppHeader = observer(() => {
                         <svg viewBox='0 0 24 24' aria-hidden='true'><path d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.32.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.26.2 2.46.57 3.58a1 1 0 0 1-.25 1.02z'/></svg>
                     </a>
                     {isDesktop ? <MenuItems /> : null}
-                </Wrapper>
-                <Wrapper variant='right'>{renderAccountSection('right')}</Wrapper>
+                </div>
+                <div className='novatrade-topbar-right'>{renderAccountSection('right')}</div>
             </Header>
             {showMarketTicker && (
                 <div className='novatrade-market-ticker' role='status' aria-label='Trading notice'>
