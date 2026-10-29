@@ -14,7 +14,20 @@ type TMobileIconGuide = {
     handleTabChange: (active_number: number) => void;
 };
 
-const PLACEHOLDER_TABS = ['Dashboard', 'Bot Builder', 'Trading Bots', 'Bulk Trader', 'Pro AI', 'Dual Edge', 'Analysis Tool', 'Copy Trading', 'Charts', 'Risk Calculator', 'Manual Trader', 'TradingView'];
+const PLACEHOLDER_TABS = [
+    { label: 'Dashboard', icon: '⌂' },
+    { label: 'Bot Builder', icon: '⚙' },
+    { label: 'Trading Bots', icon: '▣' },
+    { label: 'Bulk Trader', icon: '⇄' },
+    { label: 'Pro AI', icon: '✧' },
+    { label: 'Dual Edge', icon: '⟳' },
+    { label: 'Analysis Tool', icon: '⌕' },
+    { label: 'Copy Trading', icon: '▤' },
+    { label: 'Charts', icon: '⌁' },
+    { label: 'Risk Calculator', icon: '▦' },
+    { label: 'Manual Trader', icon: '✎' },
+    { label: 'TradingView', icon: '♧' },
+];
 
 const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
     const [activePlaceholderTab, setActivePlaceholderTab] = useState('Dashboard');
@@ -26,16 +39,17 @@ const DashboardComponent = observer(({ handleTabChange }: TMobileIconGuide) => {
 
     return (
         <React.Fragment>
-            <nav aria-label='OneMan Trade placeholder tabs' style={{ display: 'flex', gap: 0, overflowX: 'auto', whiteSpace: 'nowrap', background: '#071c2b', borderBottom: '1px solid #254254', marginBottom: 16 }}>
+            <nav aria-label='OneMan Trade placeholder tabs' style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: 0, overflowX: 'auto', whiteSpace: 'nowrap', background: '#071c2b', borderBottom: '1px solid #254254', margin: '0 0 16px', minHeight: 48, scrollbarWidth: 'thin' }}>
                 {PLACEHOLDER_TABS.map(tab => (
                     <button
-                        key={tab}
+                        key={tab.label}
                         type='button'
-                        onClick={() => setActivePlaceholderTab(tab)}
-                        aria-current={activePlaceholderTab === tab ? 'page' : undefined}
-                        style={{ flex: '0 0 auto', padding: '13px 16px', border: 0, borderRight: '1px solid #254254', background: activePlaceholderTab === tab ? '#19457d' : 'transparent', color: '#f4f7fb', fontWeight: 700, cursor: 'pointer' }}
+                        onClick={() => setActivePlaceholderTab(tab.label)}
+                        aria-current={activePlaceholderTab === tab.label ? 'page' : undefined}
+                        style={{ display: 'inline-flex', flex: '0 0 auto', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, padding: '12px 13px', minHeight: 48, border: 0, borderRight: '1px solid #254254', background: activePlaceholderTab === tab.label ? '#19457d' : 'transparent', color: '#f4f7fb', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}
                     >
-                        {tab}
+                        <span aria-hidden='true' style={{ display: 'inline-block', fontSize: 17, lineHeight: 1, color: '#38b9f2' }}>{tab.icon}</span>
+                        <span>{tab.label}</span>
                     </button>
                 ))}
             </nav>
