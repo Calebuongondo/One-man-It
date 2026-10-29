@@ -163,3 +163,24 @@
     .om-button { padding-inline: 9px; font-size: 11px !important; }
     .om-stats small { font-size: 9px; }
 }
+
+
+/* Mobile pre-login interaction and scrolling reliability */
+.om-landing {
+    overflow: visible;
+}
+.om-landing-overlay {
+    height: 100vh;
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    pointer-events: auto;
+}
+.om-landing-overlay .om-landing button,
+.om-landing-overlay .om-landing a {
+    pointer-events: auto;
+    touch-action: manipulation;
+}
