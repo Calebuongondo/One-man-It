@@ -142,3 +142,88 @@ body {
     background-color: #111b2b;
     border-color: #2b3c52;
 }
+
+
+/* Whole-screen professional surface treatment (not just the page root).
+   Theme-aware panels, workspace sections, cards and empty states all use the
+   same coordinated palette; existing branded buttons and status colours remain. */
+.theme--light,
+.theme--light body,
+.theme--light #root,
+.theme--light #app,
+.theme--light .app,
+.theme--light .main,
+.theme--light .main__content,
+.theme--light .main__container,
+.theme--light .main__page,
+.theme--light .bot-builder,
+.theme--light .dashboard,
+.theme--light .workspace,
+.theme--light .page-content {
+    background-color: #f3f6fb !important;
+    color: #172538 !important;
+}
+.theme--dark,
+.theme--dark body,
+.theme--dark #root,
+.theme--dark #app,
+.theme--dark .app,
+.theme--dark .main,
+.theme--dark .main__content,
+.theme--dark .main__container,
+.theme--dark .main__page,
+.theme--dark .bot-builder,
+.theme--dark .dashboard,
+.theme--dark .workspace,
+.theme--dark .page-content {
+    background-color: #0b1220 !important;
+    color: #edf3fa !important;
+}
+.theme--light .main__content > *,
+.theme--light .main__container > *,
+.theme--light .page-content > *,
+.theme--light .dashboard > *,
+.theme--light .bot-builder > * {
+    border-color: #dce5ef;
+}
+.theme--dark .main__content > *,
+.theme--dark .main__container > *,
+.theme--dark .page-content > *,
+.theme--dark .dashboard > *,
+.theme--dark .bot-builder > * {
+    border-color: #293a50;
+}
+.theme--light :is(.dc-card, .card, .widget, .panel, .section, .dashboard-card, .bot-card, .empty-state, .tutorial-card, .signal-card) {
+    background-color: #ffffff !important;
+    color: #172538 !important;
+    border-color: #dce5ef !important;
+    box-shadow: 0 4px 18px rgb(25 45 75 / 5%);
+}
+.theme--dark :is(.dc-card, .card, .widget, .panel, .section, .dashboard-card, .bot-card, .empty-state, .tutorial-card, .signal-card) {
+    background-color: #111b2b !important;
+    color: #edf3fa !important;
+    border-color: #293a50 !important;
+    box-shadow: 0 4px 18px rgb(0 0 0 / 12%);
+}
+.theme--light :is(.dc-card, .card, .widget, .panel, .section, .dashboard-card, .bot-card, .empty-state, .tutorial-card, .signal-card) :is(h1,h2,h3,h4,h5,p,span,label,small) {
+    color: inherit;
+}
+.theme--dark :is(.dc-card, .card, .widget, .panel, .section, .dashboard-card, .bot-card, .empty-state, .tutorial-card, .signal-card) :is(h1,h2,h3,h4,h5,p,span,label,small) {
+    color: inherit;
+}
+.theme--light .dc-tabs,
+.theme--light .dc-tabs__content,
+.theme--light .dc-tabs__list,
+.theme--light .main__tabs,
+.theme--light .main__tabs-content {
+    background-color: #f3f6fb;
+    color: #172538;
+}
+.theme--dark .dc-tabs,
+.theme--dark .dc-tabs__content,
+.theme--dark .dc-tabs__list,
+.theme--dark .main__tabs,
+.theme--dark .main__tabs-content {
+    background-color: #0b1220;
+    color: #edf3fa;
+}
