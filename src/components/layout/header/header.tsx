@@ -21,6 +21,7 @@ const AppHeader = observer(() => {
     const { isAuthorizing, activeLoginid, setIsAuthorizing, authData } = useApiBase();
     const { client } = useStore() ?? {};
     const [authTimeout, setAuthTimeout] = useState(false);
+    const [showMarketTicker, setShowMarketTicker] = useState(true);
     const is_account_regenerating = client?.is_account_regenerating || false;
 
     // Detect OAuth callback on mount (before App.tsx cleans up the URL).
@@ -171,11 +172,10 @@ const AppHeader = observer(() => {
                     // For right section - transfer button (and account switcher on desktop)
                     return (
                         <div className='auth-actions'>
-                            {isDesktop && (
-                                <div className='account-info'>
-                                    <AccountSwitcher activeAccount={activeAccount} />
-                                </div>
-                            )}
+                            <div className='account-info'>
+                                <span className='novatrade-country-flag' aria-hidden='true'>🇺🇸</span>
+                                <AccountSwitcher activeAccount={activeAccount} />
+                            </div>
                             <Button
                                 primary
                                 disabled={client?.is_logging_out || !authData?.currency}
@@ -249,18 +249,26 @@ const AppHeader = observer(() => {
                 <Wrapper variant='left'>
                     <MobileMenu onLogout={handleLogout} />
                     <AppLogo />
-                    <div className='novatrade-currency-chip' aria-label='Account currency'>
-                        <span>{authData?.currency || 'USD'}</span>
-                        <span className='novatrade-currency-chip__muted'>KES</span>
+                    <div className='novatrade-currency-chip' aria-label='Currency display'>
+                        <span className='novatrade-currency-chip__active'>KSH</span>
+                        <span className='novatrade-currency-chip__muted'>USD</span>
                     </div>
+                    <a className='novatrade-phone-action' href='https://deriv.com/contact/' target='_blank' rel='noreferrer' aria-label='Contact support' title='Contact support'>
+                        <svg viewBox='0 0 24 24' aria-hidden='true'><path d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.32.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.26.2 2.46.57 3.58a1 1 0 0 1-.25 1.02z'/></svg>
+                    </a>
                     {isDesktop ? <MenuItems /> : renderAccountSection('left')}
                 </Wrapper>
                 <Wrapper variant='right'>{renderAccountSection('right')}</Wrapper>
             </Header>
-            <div className='novatrade-market-ticker' role='status' aria-label='Trading notice'>
-                <span>ONEMAN TRADE — YOUR TRADING WORKSPACE</span>
-                <span>Trade responsibly. Manage risk before starting a strategy.</span>
-            </div>
+            {showMarketTicker && (
+                <div className='novatrade-market-ticker' role='status' aria-label='Trading notice'>
+                    <div className='novatrade-market-ticker__track'>
+                        <span>ONEMAN TRADE — YOUR HUB FOR TRADING KNOWLEDGE, DERIV INDICES & TRADING TOOLS</span>
+                        <span>Trade responsibly. Manage risk before starting a strategy.</span>
+                    </div>
+                    <button type='button' className='novatrade-market-ticker__close' onClick={() => setShowMarketTicker(false)} aria-label='Close trading notice'>×</button>
+                </div>
+            )}
         </>
     );
 });
