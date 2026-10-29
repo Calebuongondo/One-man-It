@@ -448,6 +448,150 @@ const AppWrapper = observer(() => {
                                     </Suspense>
                                 </div>
                             </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'▣'}</span>
+                                        <span>{'Trading Bots'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-trading-bots'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Trading Bots'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Trading Bots'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'⇄'}</span>
+                                        <span>{'Bulk Trader'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-bulk-trader'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Bulk Trader'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Bulk Trader'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'✧'}</span>
+                                        <span>{'Pro AI'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-pro-ai'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Pro AI'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Pro AI'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'⟳'}</span>
+                                        <span>{'Dual Edge'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-dual-edge'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Dual Edge'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Dual Edge'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'⌕'}</span>
+                                        <span>{'Analysis Tool'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-analysis-tool'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Analysis Tool'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Analysis Tool'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'▤'}</span>
+                                        <span>{'Copy Trading'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-copy-trading'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Copy Trading'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Copy Trading'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'▦'}</span>
+                                        <span>{'Risk Calculator'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-risk-calculator'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Risk Calculator'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Risk Calculator'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'✎'}</span>
+                                        <span>{'Manual Trader'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-manual-trader'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'Manual Trader'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'Manual Trader'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                label={
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        <span aria-hidden='true' style={{ fontSize: 20 }}>{'♧'}</span>
+                                        <span>{'TradingView'}</span>
+                                    </span>
+                                }
+                                id='id-novatrade-trading-view'
+                            >
+                                <div style={{ padding: '32px 24px', minHeight: 240, color: 'var(--text-general)' }}>
+                                    <h2 style={{ margin: '0 0 12px', fontSize: 22, fontWeight: 700 }}>{'TradingView'}</h2>
+                                    <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                        This {'TradingView'} section is ready for its tools and features. Your existing trading dashboard remains unchanged.
+                                    </p>
+                                </div>
+                            </div>
                         </Tabs>
                         {!isDesktop && right_tab_shadow && <span className='tabs-shadow tabs-shadow--right' />}{' '}
                     </div>
