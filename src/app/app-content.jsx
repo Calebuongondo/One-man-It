@@ -120,28 +120,39 @@ const AppContent = observer(() => {
     const changeActiveSymbolLoadingState = () => {
         init();
 
-        const retrieveActiveSymbols = () => {
-            const { active_symbols } = ApiHelpers.instance;
+        // Never leave the trading workspace behind an infinite loader after OAuth.
+        let finished = false;
+        let intervalId: ReturnType<typeof setInterval> | undefined;
+        const timeoutId = setTimeout(() => finishLoading('Timed out waiting for active symbols'), 15000);
 
-            active_symbols.retrieveActiveSymbols(true).then(() => {
-                setIsLoading(false);
-            });
+        const finishLoading = (reason?: string) => {
+            if (finished) return;
+            finished = true;
+            clearTimeout(timeoutId);
+            if (intervalId) clearInterval(intervalId);
+            if (reason) console.warn('[AppContent] ' + reason + '; opening workspace with available data.');
+            setIsLoading(false);
         };
 
-        if (ApiHelpers?.instance?.active_symbols) {
-            retrieveActiveSymbols();
-        } else {
-            // This is a workaround to fix the issue where the active symbols are not loaded immediately
-            // when the API is initialized. Should be replaced with RxJS pubsub
-            const intervalId = setInterval(() => {
-                if (ApiHelpers?.instance?.active_symbols) {
+        const retrieveActiveSymbols = () => {
+            const activeSymbols = ApiHelpers?.instance?.active_symbols;
+            if (!activeSymbols) return false;
+            Promise.resolve(activeSymbols.retrieveActiveSymbols(true))
+                .catch(error => console.error('[AppContent] Active symbols retrieval failed:', error))
+                .finally(() => finishLoading());
+            return true;
+        };
+
+        if (!retrieveActiveSymbols()) {
+            // Poll briefly for API helpers, then allow the workspace to render anyway.
+            intervalId = setInterval(() => {
+                if (retrieveActiveSymbols() && intervalId) {
                     clearInterval(intervalId);
-                    retrieveActiveSymbols();
+                    intervalId = undefined;
                 }
-            }, 1000);
+            }, 500);
         }
     };
-
     React.useEffect(() => {
         if (is_api_initialized) {
             init();
