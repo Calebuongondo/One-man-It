@@ -12,18 +12,35 @@ const PreLoginLanding = () => {
         if (loading) return;
         setLoading(action);
         setAuthError('');
+
+        let timeoutId: number | undefined;
         try {
-            const url = await generateOAuthURL(action === 'signup' ? 'registration' : undefined);
+            // Prevent a stalled OAuth/network request from leaving the entire landing screen
+            // in a permanent "Connecting…" state with every auth button disabled.
+            const timeout = new Promise<never>((_, reject) => {
+                timeoutId = window.setTimeout(
+                    () => reject(new Error('Sign-in request timed out')),
+                    12000
+                );
+            });
+            const url = await Promise.race([
+                generateOAuthURL(action === 'signup' ? 'registration' : undefined),
+                timeout,
+            ]);
+
             if (url) {
                 window.location.assign(url);
                 return;
             }
-            setAuthError('We could not start Deriv sign-in. Please refresh and try again.');
+            setAuthError('We could not start Deriv sign-in. Please check your connection and try again.');
         } catch (error) {
             console.error('Authentication redirect failed:', error);
-            setAuthError('We could not start Deriv sign-in. Please refresh and try again.');
+            setAuthError('Deriv sign-in did not respond. Please check your connection and try again.');
+        } finally {
+            if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+            // If navigation didn't start, restore the buttons so the user can retry.
+            setLoading(null);
         }
-        setLoading(null);
     };
 
     return (
