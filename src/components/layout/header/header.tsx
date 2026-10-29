@@ -187,23 +187,10 @@ const AppHeader = observer(() => {
                     );
                 }
             }
-            // Show login button only when fully settled (not during OAuth flow)
-            else if (
-                position === 'right' &&
-                !isOAuthPending &&
-                !hasPendingStoredAuth &&
-                ((!is_account_regenerating && !isAuthorizing && !activeLoginid) || authTimeout)
-            ) {
-                return (
-                    <div className='auth-actions'>
-                        <Button tertiary onClick={handleLogin}>
-                            <Localize i18n_default_text='Log in' />
-                        </Button>
-                        <Button primary_light onClick={handleSignup}>
-                            <Localize i18n_default_text='Sign up' />
-                        </Button>
-                    </div>
-                );
+            // Keep the reference-style header clean: login/signup actions are intentionally
+            // not displayed in the post-login workspace header.
+            else if (position === 'right' && !activeLoginid) {
+                return null;
             }
             // Default: Show spinner during loading states or when authorizing
             else if (position === 'right') {
