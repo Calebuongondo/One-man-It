@@ -181,7 +181,7 @@ const AppHeader = observer(() => {
                                 disabled={client?.is_logging_out || !authData?.currency}
                                 onClick={handleTransfer}
                             >
-                                <Localize i18n_default_text='Transfer' />
+                                <Localize i18n_default_text='Withdraw' />
                             </Button>
                         </div>
                     );
@@ -262,10 +262,18 @@ const AppHeader = observer(() => {
                 <Wrapper variant='left'>
                     <MobileMenu onLogout={handleLogout} />
                     <AppLogo />
+                    <div className='novatrade-currency-chip' aria-label='Account currency'>
+                        <span>{authData?.currency || 'USD'}</span>
+                        <span className='novatrade-currency-chip__muted'>KES</span>
+                    </div>
                     {isDesktop ? <MenuItems /> : renderAccountSection('left')}
                 </Wrapper>
                 <Wrapper variant='right'>{renderAccountSection('right')}</Wrapper>
             </Header>
+            <div className='novatrade-market-ticker' role='status' aria-label='Trading notice'>
+                <span>ONEMAN TRADE — YOUR TRADING WORKSPACE</span>
+                <span>Trade responsibly. Manage risk before starting a strategy.</span>
+            </div>
         </>
     );
 });
