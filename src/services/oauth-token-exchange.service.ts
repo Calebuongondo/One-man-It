@@ -213,6 +213,7 @@ export class OAuthTokenExchangeService {
                         // Set the first account as active in localStorage
                         const firstAccount = accounts[0];
                         localStorage.setItem('active_loginid', firstAccount.account_id);
+                        sessionStorage.setItem('novatrade_oauth_loginid', firstAccount.account_id);
 
                         // Set account type
                         const isDemo =
