@@ -493,3 +493,129 @@
     .novatrade-phone-action svg { width: 2.3rem; height: 2.3rem; }
     .novatrade-market-ticker { min-height: 3.2rem !important; font-size: 1.05rem !important; }
 }
+
+
+/* Mobile reference layout: keep every account control on-screen without collisions. */
+@media (max-width: 767px) {
+    .app-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 0.45rem !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 6.4rem !important;
+        min-height: 6.4rem !important;
+        padding: 0 0.65rem !important;
+        overflow: visible !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .app-header .app-header__logo,
+    .app-header .novatrade-topbar-left > .app-header__logo,
+    .app-header .novatrade-topbar-left > .menu-items {
+        display: none !important;
+    }
+
+    .app-header .novatrade-topbar-left {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        align-items: center !important;
+        gap: 0.45rem !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
+
+    .app-header .novatrade-topbar-right {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        gap: 0 !important;
+        min-width: 0 !important;
+        width: auto !important;
+        margin-inline-start: 0 !important;
+    }
+
+    .app-header .auth-actions {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 0.45rem !important;
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    .app-header .account-info {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 0.35rem !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
+
+    .app-header .novatrade-country-flag {
+        font-size: 1.9rem !important;
+        line-height: 1 !important;
+    }
+
+    .app-header .acc-info__balance {
+        font-size: clamp(1.05rem, 3.5vw, 1.4rem) !important;
+        line-height: 1.15 !important;
+        white-space: nowrap !important;
+    }
+
+    .app-header .auth-actions button {
+        flex: 0 0 auto !important;
+        min-height: 3.2rem !important;
+        padding: 0 0.9rem !important;
+        font-size: 1.15rem !important;
+    }
+
+    .app-header .novatrade-currency-chip {
+        min-height: 2.8rem !important;
+        padding: 0.2rem 0.3rem !important;
+        gap: 0.2rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    .app-header .novatrade-phone-action {
+        width: 2.2rem !important;
+        min-width: 2.2rem !important;
+        height: 2.8rem !important;
+    }
+
+    .app-header .novatrade-phone-action svg {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+
+    .app-header .deriv-account-switcher__button {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        padding-inline: 0 !important;
+        margin: 0 !important;
+    }
+
+    .app-header .deriv-account-switcher__balance {
+        padding: 0 !important;
+    }
+
+    .app-header .deriv-account-switcher__icon {
+        margin-inline-end: 0.2rem !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .app-header { gap: 0.25rem !important; padding-inline: 0.4rem !important; }
+    .app-header .novatrade-topbar-left { gap: 0.3rem !important; }
+    .app-header .auth-actions { gap: 0.3rem !important; }
+    .app-header .novatrade-currency-chip { font-size: 0.85rem !important; }
+    .app-header .novatrade-phone-action { width: 1.9rem !important; min-width: 1.9rem !important; }
+    .app-header .auth-actions button { padding-inline: 0.65rem !important; font-size: 1.05rem !important; }
+    .app-header .novatrade-country-flag { font-size: 1.65rem !important; }
+    .app-header .acc-info__balance { font-size: 1.05rem !important; }
+}
