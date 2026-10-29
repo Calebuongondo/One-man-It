@@ -29,7 +29,13 @@ const PreLoginLanding = () => {
             ]);
 
             if (url) {
-                window.location.assign(url);
+                // Keep the landing page alive if the external OAuth page is slow to load.
+                // OAuth opens in a separate tab so a stalled provider navigation cannot
+                // make this landing page appear frozen.
+                const authWindow = window.open(url, '_blank', 'noopener,noreferrer');
+                if (!authWindow) {
+                    setAuthError('Your browser blocked the sign-in tab. Allow pop-ups for this site and try again.');
+                }
                 return;
             }
             setAuthError('We could not start Deriv sign-in. Please check your connection and try again.');
