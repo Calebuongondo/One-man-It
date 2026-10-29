@@ -227,3 +227,54 @@ body {
     background-color: #0b1220;
     color: #edf3fa;
 }
+
+
+/* High-contrast mobile readability fix: explicit foreground/background pairs
+   for the dashboard, bot import cards, tabs, and fixed execution controls. */
+.theme--light .tab__dashboard,
+.theme--light .tab__dashboard__content,
+.theme--light .quick-panel {
+    background: #ffffff !important;
+    color: #17212b !important;
+}
+.theme--dark .tab__dashboard,
+.theme--dark .tab__dashboard__content,
+.theme--dark .quick-panel {
+    background: #111b2b !important;
+    color: #f2f5f8 !important;
+}
+.theme--light .tab__dashboard :is(h1,h2,h3,h4,p,span,label,.dc-text),
+.theme--light .quick-panel :is(h1,h2,h3,h4,p,span,label,.dc-text) {
+    color: #17212b !important;
+}
+.theme--dark .tab__dashboard :is(h1,h2,h3,h4,p,span,label,.dc-text),
+.theme--dark .quick-panel :is(h1,h2,h3,h4,p,span,label,.dc-text) {
+    color: #f2f5f8 !important;
+}
+.theme--light .tab__dashboard :is(button,[role='button']),
+.theme--light .quick-panel :is(button,[role='button']) {
+    color: #17212b !important;
+}
+.theme--dark .tab__dashboard :is(button,[role='button']),
+.theme--dark .quick-panel :is(button,[role='button']) {
+    color: #f2f5f8 !important;
+}
+.theme--light .tab__dashboard .tab__dashboard__table__images {
+    background: #eef2f6 !important;
+    border: 1px solid #d4dde7 !important;
+}
+.theme--dark .tab__dashboard .tab__dashboard__table__images {
+    background: #202d3e !important;
+    border: 1px solid #3b4c61 !important;
+}
+.theme--light .dc-tabs__item { color: #ffffff !important; }
+.theme--dark .dc-tabs__item { color: #f8fafc !important; }
+.theme--light .dc-tabs__item--active,
+.theme--dark .dc-tabs__item--active {
+    background: #173f78 !important;
+    color: #ffffff !important;
+}
+.theme--light .dc-tabs__item :is(span,svg),
+.theme--dark .dc-tabs__item :is(span,svg) {
+    color: inherit !important;
+}
