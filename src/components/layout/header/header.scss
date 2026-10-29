@@ -688,3 +688,147 @@
     .novatrade-phone-action { width: 2.6rem; height: 2.8rem; }
     .novatrade-phone-action svg { width: 2.5rem; height: 2.5rem; }
 }
+
+
+/* FINAL layout correction: preserve the UI library header's own display model.
+   The earlier root-level flex override could compress its left/right wrappers
+   until the mint bar and controls were effectively clipped on small screens. */
+.app-header {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 7.4rem !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    background: #eafff5 !important;
+    color: #102a2a !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: 0 2px 8px rgb(10 50 40 / 8%) !important;
+    position: relative;
+    z-index: 20;
+}
+.app-header > div,
+.app-header [class*='wrapper'],
+.app-header [class*='Wrapper'] {
+    background-color: #eafff5 !important;
+    color: #102a2a !important;
+    box-sizing: border-box;
+}
+.app-header > div {
+    min-height: 7.4rem;
+    max-width: 100%;
+}
+.app-header [class*='left'],
+.app-header [class*='right'] {
+    align-items: center !important;
+    min-width: 0 !important;
+}
+.app-header [class*='left'] {
+    gap: 1.1rem !important;
+}
+.app-header [class*='right'] {
+    flex-shrink: 0 !important;
+}
+.app-header .auth-actions {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+}
+.app-header .auth-actions > * {
+    flex-shrink: 0;
+}
+.app-header .account-info {
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+.app-header .novatrade-currency-chip,
+.app-header .novatrade-phone-action {
+    flex-shrink: 0 !important;
+}
+.novatrade-market-ticker {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 3.8rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #c62828 !important;
+    color: #fff !important;
+    position: relative !important;
+    z-index: 19;
+}
+.novatrade-market-ticker__track {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    will-change: transform;
+}
+.novatrade-market-ticker__close {
+    background: #a91f1f !important;
+    color: #fff !important;
+    flex-shrink: 0 !important;
+}
+@media (max-width: 767px) {
+    .app-header {
+        min-height: 7rem !important;
+    }
+    .app-header > div {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        min-height: 7rem !important;
+        padding: 0 1rem !important;
+        gap: 0.5rem !important;
+    }
+    .app-header [class*='left'] {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
+        overflow: visible !important;
+        gap: 0.55rem !important;
+    }
+    .app-header [class*='right'] {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 55% !important;
+        overflow: visible !important;
+    }
+    .app-header .app-logo,
+    .app-header [class*='app-logo'] {
+        max-width: 7.5rem;
+        flex-shrink: 1 !important;
+    }
+    .app-header .auth-actions {
+        gap: 0.55rem !important;
+    }
+    .app-header .auth-actions button {
+        min-height: 3.7rem !important;
+        padding: 0 1.3rem !important;
+        font-size: 1.3rem !important;
+    }
+    .app-header .account-info {
+        gap: 0.25rem !important;
+    }
+    .app-header .acc-info__balance {
+        font-size: 1.45rem !important;
+    }
+    .novatrade-country-flag { font-size: 2.5rem !important; }
+    .novatrade-currency-chip {
+        gap: 0.2rem !important;
+        padding: 0.35rem !important;
+        font-size: 1rem !important;
+    }
+    .novatrade-phone-action {
+        width: 2.3rem !important;
+        height: 2.8rem !important;
+    }
+    .novatrade-phone-action svg { width: 2.2rem !important; height: 2.2rem !important; }
+    .novatrade-market-ticker { min-height: 3.4rem !important; font-size: 1.05rem !important; }
+}
