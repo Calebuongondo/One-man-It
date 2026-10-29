@@ -754,3 +754,51 @@
     align-items: center;
     justify-content: center;
 }
+
+
+/* Reference-style trading navigation strip beneath the red ticker. */
+.main .dc-tabs__list,
+.main .dc-tabs__list--header--main__tabs {
+    background: #061b2b !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    gap: 0 !important;
+}
+.main .dc-tabs__item {
+    min-height: 6.4rem !important;
+    height: 6.4rem !important;
+    padding: 0 2.4rem !important;
+    border-radius: 0 !important;
+    background: #061b2b !important;
+    color: #fff !important;
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap;
+}
+.main .dc-tabs__item svg,
+.main .dc-tabs__item svg path {
+    color: #32bdf2 !important;
+    fill: #32bdf2 !important;
+}
+.main .dc-tabs__item--active,
+.main .dc-tabs__item--active * {
+    background: #142c3d !important;
+    color: #fff !important;
+}
+.main .dc-tabs__active-line { background: #32bdf2 !important; height: 0.3rem !important; }
+@media (max-width: 767px) {
+    .main .dc-tabs__list,
+    .main .dc-tabs__list--header--main__tabs {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding: 0 !important;
+        min-height: 6.4rem;
+    }
+    .main .dc-tabs__item {
+        flex: 0 0 auto !important;
+        padding: 0 1.8rem !important;
+        font-size: 1.55rem !important;
+    }
+}
