@@ -69,6 +69,8 @@ const router = createBrowserRouter(
  * All complex logic has been extracted into custom hooks for better maintainability
  */
 function App() {
+    const [oauthLoginError, setOAuthLoginError] = React.useState('');
+
     // Handle OAuth callback flow (CSRF validation + code extraction)
     const { isProcessing, isValid, params, error, cleanupURL } = useOAuthCallback();
 
@@ -84,23 +86,69 @@ function App() {
                     if (response.access_token) {
                         cleanupURL();
                     } else if (response.error) {
-                        console.error('❌ Token exchange failed:', response.error);
-                        console.error('Error description:', response.error_description);
-                        // Clean up URL even on error
+                        const message = response.error_description || response.error;
+                        console.error('❌ Token exchange failed:', response.error, message);
+                        setOAuthLoginError(message);
                         cleanupURL();
                     }
                 })
                 .catch(error => {
+                    const message = error instanceof Error ? error.message : 'The sign-in request failed.';
                     console.error('❌ Token exchange request failed:', error);
-                    // Clean up URL even on error
+                    setOAuthLoginError(message);
                     cleanupURL();
                 });
         } else if (!isProcessing && error) {
             console.error('OAuth callback error:', error);
+            setOAuthLoginError(error);
         }
     }, [isProcessing, isValid, params.code, error, cleanupURL]);
 
-    return <RouterProvider router={router} />;
+    return (
+        <>
+            <RouterProvider router={router} />
+            {oauthLoginError && (
+                <div
+                    role='alert'
+                    style={{
+                        position: 'fixed',
+                        zIndex: 100000,
+                        left: '16px',
+                        right: '16px',
+                        bottom: '16px',
+                        maxWidth: '560px',
+                        margin: '0 auto',
+                        padding: '16px',
+                        borderRadius: '12px',
+                        background: '#351b1b',
+                        color: '#ffffff',
+                        border: '1px solid #d65b5b',
+                        boxShadow: '0 8px 30px rgba(0,0,0,.35)',
+                    }}
+                >
+                    <strong>Deriv sign-in failed</strong>
+                    <p style={{ margin: '8px 0', overflowWrap: 'anywhere' }}>{oauthLoginError}</p>
+                    <p style={{ margin: '0 0 12px', fontSize: '13px' }}>
+                        Your account has not been signed in. Please try again. Do not share access tokens or passwords.
+                    </p>
+                    <button
+                        type='button'
+                        onClick={() => setOAuthLoginError('')}
+                        style={{
+                            padding: '8px 12px',
+                            borderRadius: '8px',
+                            border: '1px solid #ffffff',
+                            background: 'transparent',
+                            color: '#ffffff',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        Dismiss
+                    </button>
+                </div>
+            )}
+        </>
+    );
 }
 
 export default App;
