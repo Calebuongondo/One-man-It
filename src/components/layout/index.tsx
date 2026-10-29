@@ -11,7 +11,6 @@ import Footer from './footer';
 import AppHeader from './header';
 import Body from './main-body';
 import PreLoginLanding from './pre-login-landing';
-import NovaTradeLoading from '../novatrade-loading';
 import './layout.scss';
 
 const getStoredOAuthLoginid = (): string => {
@@ -44,10 +43,17 @@ const Layout = observer(() => {
         window.addEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
         return () => window.removeEventListener('novatrade:oauth-account-ready', handleOAuthAccountReady);
     }, []);
-    // Keep the pre-login page accessible immediately; the decorative splash must not block login.
-    const [showStartupSplash, setShowStartupSplash] = useState(false);
     const is_quick_strategy_active = store?.quick_strategy?.is_open;
     const isCallbackPage = window.location.pathname === '/callback';
+    // Once Deriv OAuth has returned, let Deriv's own app/loading UI handle connection
+    // state instead of covering it with the NovaTrade welcome screen.
+    const hasOAuthReturn = (() => {
+        try {
+            return Boolean(sessionStorage.getItem('auth_info') || sessionStorage.getItem('novatrade_oauth_loginid') || localStorage.getItem('active_loginid'));
+        } catch {
+            return false;
+        }
+    })();
 
     const checkClientAccount = JSON.parse(localStorage.getItem('clientAccounts') ?? '{}');
     const getQueryParams = new URLSearchParams(window.location.search);
@@ -60,15 +66,6 @@ const Layout = observer(() => {
         currency === '';
     const [clientHasCurrency, setClientHasCurrency] = useState(ifClientAccountHasCurrency);
     const [isAuthenticating, setIsAuthenticating] = useState(true); // Start with true to prevent flashing
-
-    useEffect(() => {
-        if (isCallbackPage || resolvedLoginid) {
-            setShowStartupSplash(false);
-            return;
-        }
-        const timer = window.setTimeout(() => setShowStartupSplash(false), 3200);
-        return () => window.clearTimeout(timer);
-    }, [isCallbackPage, resolvedLoginid]);
 
     // Expose setClientHasCurrency to window for global access
     useEffect(() => {
@@ -194,13 +191,11 @@ const Layout = observer(() => {
                 <Outlet />
             </Body>
             {!isCallbackPage && isDesktop && <Footer />}
-            {!resolvedLoginid && !isCallbackPage && (showStartupSplash ? (
-                <NovaTradeLoading status='Connecting to Volatility Markets...' fullscreen />
-            ) : (
+            {!resolvedLoginid && !isCallbackPage && !hasOAuthReturn && (
                 <div className='om-landing-overlay'>
                     <PreLoginLanding />
                 </div>
-            ))}
+            )}
         </div>
     );
 });
