@@ -29,13 +29,9 @@ const PreLoginLanding = () => {
             ]);
 
             if (url) {
-                // Keep the landing page alive if the external OAuth page is slow to load.
-                // OAuth opens in a separate tab so a stalled provider navigation cannot
-                // make this landing page appear frozen.
-                const authWindow = window.open(url, '_blank', 'noopener,noreferrer');
-                if (!authWindow) {
-                    setAuthError('Your browser blocked the sign-in tab. Allow pop-ups for this site and try again.');
-                }
+                // Keep OAuth in the same tab: CSRF state and the PKCE verifier are held
+                // in sessionStorage and must be available when Deriv redirects back.
+                window.location.assign(url);
                 return;
             }
             setAuthError('We could not start Deriv sign-in. Please check your connection and try again.');
