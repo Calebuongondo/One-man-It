@@ -151,3 +151,66 @@
         }
     }
 }
+
+
+/* Keep the mobile drawer above the entire trading workspace, ticker, tab row,
+   floating AI button, and sticky bottom execution panel. */
+.mobile-menu {
+    position: relative;
+    z-index: 100000 !important;
+}
+.mobile-menu__toggle {
+    position: relative;
+    z-index: 1;
+}
+.mobile-menu .deriv-drawer,
+.mobile-menu [class*='deriv-drawer'] {
+    z-index: 100001 !important;
+}
+.mobile-menu .deriv-drawer__overlay,
+.mobile-menu .deriv-drawer__backdrop,
+.mobile-menu [class*='drawer-overlay'],
+.mobile-menu [class*='drawer-backdrop'] {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 100000 !important;
+}
+.mobile-menu .deriv-drawer__container {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    z-index: 100001 !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    background: #ffffff !important;
+    color: #102a2a !important;
+    box-shadow: 0.8rem 0 3rem rgb(0 0 0 / 28%) !important;
+}
+.mobile-menu .deriv-drawer__header,
+.mobile-menu .deriv-drawer__content,
+.mobile-menu .deriv-drawer__footer {
+    position: relative;
+    z-index: 1;
+    background: #ffffff !important;
+    color: #102a2a !important;
+}
+.mobile-menu .deriv-drawer__header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
+    border-bottom: 1px solid #e4ece9;
+}
+.mobile-menu .deriv-drawer__footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    border-top: 1px solid #e4ece9;
+}
+@media (max-width: 767px) {
+    .mobile-menu .deriv-drawer__container {
+        width: min(29.5rem, 88vw) !important;
+        max-width: 88vw !important;
+    }
+}
