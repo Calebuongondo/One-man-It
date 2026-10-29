@@ -278,3 +278,25 @@ body {
 .theme--dark .dc-tabs__item :is(span,svg) {
     color: inherit !important;
 }
+
+
+/* Keep navigation text high-contrast regardless of the selected page theme. */
+.main .dc-tabs__list,
+.main .dc-tabs__list--header--main__tabs {
+    background-color: #061b2b !important;
+}
+.main .dc-tabs__item,
+.main .dc-tabs__item :is(span, .dc-text, svg) {
+    color: #f8fafc !important;
+    opacity: 1 !important;
+}
+.main .dc-tabs__item--active,
+.main .dc-tabs__item[aria-selected="true"] {
+    background-color: #173f78 !important;
+    color: #ffffff !important;
+}
+.main .dc-tabs__item--active :is(span, .dc-text, svg),
+.main .dc-tabs__item[aria-selected="true"] :is(span, .dc-text, svg) {
+    color: #ffffff !important;
+}
+.main .dc-tabs__active-line { display: none !important; }
