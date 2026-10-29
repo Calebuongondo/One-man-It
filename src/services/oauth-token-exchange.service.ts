@@ -223,10 +223,17 @@ export class OAuthTokenExchangeService {
                             loginid: firstAccount.account_id,
                         });
 
-                        // Trigger WebSocket initialization by reloading or reinitializing api_base
-                        // The api_base will pick up the active_loginid and authorize
+                        // Notify the layout immediately that OAuth produced a valid account.
+                        // The WebSocket authorization can finish asynchronously; it must not keep
+                        // the whole sign-in callback (and pre-login overlay) waiting indefinitely.
+                        window.dispatchEvent(
+                            new CustomEvent('novatrade:oauth-account-ready', { detail: firstAccount.account_id })
+                        );
+
                         const { api_base } = await import('@/external/bot-skeleton');
-                        await api_base.init(true); // Force new connection with the account
+                        void api_base.init(true).catch(error => {
+                            console.error('[OAuth] Trading connection initialization failed:', error);
+                        });
                     } else {
                         // No accounts returned - this is an error condition
                         ErrorLogger.error('OAuth', 'No accounts returned after token exchange');
