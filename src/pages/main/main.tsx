@@ -97,6 +97,13 @@ const NovaTradeTool = ({ name }: NovaTradeToolProps) => {
             setResult('Use the Charts tab for the integrated chart workspace. Select a market there, then return here to record notes about your analysis.');
         }
     };
+    if (name === 'TradingView') {
+        return <section style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: '520px', width: '100%', background: '#ffffff', color: '#17212b' }} aria-label='Deriv TradingView chart'>
+            <h2 style={{ margin: '16px 20px 8px', fontSize: 22, color: '#17212b' }}>Deriv TradingView</h2>
+            <p style={{ margin: '0 20px 12px', color: '#475569' }}>Live market charts from Deriv. Sign in to Deriv if the chart requests it.</p>
+            <iframe title='Deriv TradingView market chart' src='https://charts.deriv.com/deriv?hide-signup=true' style={{ display: 'block', flex: '1 1 auto', width: '100%', minHeight: '480px', border: 0, background: '#ffffff' }} allow='clipboard-read; clipboard-write' />
+        </section>;
+    }
     const riskCalc = name === 'Risk Calculator';
     const bulk = name === 'Bulk Trader';
     const dual = name === 'Dual Edge';
