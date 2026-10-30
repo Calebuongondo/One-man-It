@@ -259,15 +259,7 @@ const AppHeader = observer(() => {
                 </div>
                 <div className='novatrade-topbar-right'>{renderAccountSection('right')}</div>
             </Header>
-            {showMarketTicker && (
-                <div className='novatrade-market-ticker' role='status' aria-label='Trading notice'>
-                    <div className='novatrade-market-ticker__track'>
-                        <span>ONEMAN TRADE — YOUR HUB FOR TRADING KNOWLEDGE, DERIV INDICES & TRADING TOOLS</span>
-                        <span>Trade responsibly. Manage risk before starting a strategy.</span>
-                    </div>
-                    <button type='button' className='novatrade-market-ticker__close' onClick={() => setShowMarketTicker(false)} aria-label='Close trading notice'>×</button>
-                </div>
-            )}
+            {/* Removed the promotional ticker so it cannot overlay or obscure workspace tabs. */}
         </>
     );
 });
