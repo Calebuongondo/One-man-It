@@ -1093,3 +1093,94 @@
     outline: 0 !important;
     border-top: 0 !important;
 }
+
+
+/* Balanced content area for the additional NovaTrade tools. */
+.novatrade-tool {
+    max-width: 1040px !important;
+    min-height: 100%;
+    margin: 0 auto !important;
+    padding: clamp(16px, 3vw, 28px) !important;
+    color: #18212b !important;
+    background: #ffffff !important;
+    box-sizing: border-box;
+}
+.novatrade-tool h2 {
+    color: #17212b !important;
+    border-left: 5px solid #c91f32;
+    padding-left: 12px;
+}
+.novatrade-tool p,
+.novatrade-tool label {
+    color: #334155 !important;
+}
+.novatrade-tool input,
+.novatrade-tool select {
+    color: #17212b !important;
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+}
+.novatrade-tool button {
+    min-width: 150px;
+}
+.novatrade-tool [role="status"] {
+    color: #17212b !important;
+    background: #fff5f5 !important;
+}
+.novatrade-tradingview-panel {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    overflow: auto;
+    background: #ffffff;
+}
+.novatrade-tradingview-panel .dashboard__chart-wrapper {
+    width: 100% !important;
+    height: var(--tab-content-height, calc(100vh - 250px)) !important;
+    min-height: 500px;
+    background: #ffffff !important;
+}
+@media (max-width: 767px) {
+    .main {
+        height: calc(100dvh - 205px) !important;
+        min-height: 320px !important;
+        padding: 0 !important;
+    }
+    .main__container {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        min-height: 0 !important;
+    }
+    .main .dc-tabs__list,
+    .main .dc-tabs__list--header--main__tabs,
+    .main .dc-tabs__list--main__tabs {
+        flex: 0 0 58px !important;
+        height: 58px !important;
+        min-height: 58px !important;
+    }
+    .main .dc-tabs__content {
+        flex: 1 1 auto !important;
+        height: calc(100% - 58px) !important;
+        min-height: 0 !important;
+        overflow: auto !important;
+        background: #ffffff !important;
+    }
+    .novatrade-tool {
+        width: 100% !important;
+        min-height: 100%;
+        padding: 18px 16px 28px !important;
+        overflow: visible !important;
+    }
+    .novatrade-tool > div {
+        min-width: 0;
+    }
+    .novatrade-tradingview-panel {
+        min-height: 480px;
+        height: 100%;
+    }
+    .novatrade-tradingview-panel .dashboard__chart-wrapper {
+        height: calc(100dvh - 260px) !important;
+        min-height: 480px;
+    }
+}
