@@ -1003,3 +1003,53 @@
         display: none !important;
     }
 }
+
+
+/* Remove both sources of the unwanted green tab stripe: the scroll-edge
+   shadows and Deriv Tabs active-line. Keep the tab backgrounds high contrast. */
+.main .tabs-shadow,
+.main .tabs-shadow--left,
+.main .tabs-shadow--right,
+.main .dc-tabs__active-line,
+.main .dc-tabs__list .dc-tabs__active-line {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.main .dc-tabs__list,
+.main .dc-tabs__list--header--main__tabs,
+.main .dc-tabs__list--main__tabs {
+    background: #8f1423 !important;
+    background-color: #8f1423 !important;
+}
+.main .dc-tabs__item {
+    background: #8f1423 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    border: 0 !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+.main .dc-tabs__item *,
+.main .dc-tabs__item svg,
+.main .dc-tabs__item svg path {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+.main .dc-tabs__item--is-scrollable-and-active,
+.main .dc-tabs__item--active,
+.main .dc-tabs__item[aria-selected="true"] {
+    background: #c91f32 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+.main .dc-tabs__item--is-scrollable-and-active *,
+.main .dc-tabs__item--active *,
+.main .dc-tabs__item[aria-selected="true"] * {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
