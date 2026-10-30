@@ -93,6 +93,17 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                     }}
                 >
                     <span className='acc-info__id' aria-hidden='true'></span>
+                    <span
+                        className={classNames('novatrade-account-mode-icon', {
+                            'novatrade-account-mode-icon--demo': isVirtual,
+                            'novatrade-account-mode-icon--real': !isVirtual,
+                        })}
+                        role='img'
+                        aria-label={isVirtual ? 'Demo account' : 'Real account — United States'}
+                        title={isVirtual ? 'Demo account' : 'Real account — United States'}
+                    >
+                        {isVirtual ? 'D' : '🇺🇸'}
+                    </span>
                     <div className='acc-info__content'>
                         <div className='acc-info__account-type-header'>
                             <Text as='p' size='xs' className='acc-info__account-type'>
