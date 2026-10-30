@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { api_base } from '@/external/bot-skeleton';
 import { useStore } from '../../hooks/useStore';
 
 const NAV_ITEMS = [
@@ -24,13 +25,14 @@ const QUICK_LINKS = [
     { label: 'Analysis Tool', icon: '▦', tone: 'violet', detail: 'Open analysis tools and market research.' },
 ];
 
-const SIGNALS = [
-    { rank: 1, market: 'Volatility 75 (1s) Index', contract: 'Under 5', confidence: 54, tag: 'Volatility' },
-    { rank: 2, market: 'Volatility 50 Index', contract: 'Over 3', confidence: 68, tag: 'Volatility' },
-    { rank: 3, market: 'Boom 500 Index', contract: 'Rise', confidence: 61, tag: 'Boom & Crash' },
-    { rank: 4, market: 'Crash  crash 300 Index', contract: 'Fall', confidence: 57, tag: 'Boom & Crash' },
-    { rank: 5, market: 'Volatility 25 Index', contract: 'Under 4', confidence: 72, tag: 'Volatility' },
-    { rank: 6, market: 'Step Index', contract: 'Over 2', confidence: 63, tag: 'Other' },
+const SIGNAL_MARKETS = [
+    { symbol: 'R_75', market: 'Volatility 75 Index', tag: 'Volatility' },
+    { symbol: 'R_50', market: 'Volatility 50 Index', tag: 'Volatility' },
+    { symbol: 'R_25', market: 'Volatility 25 Index', tag: 'Volatility' },
+    { symbol: '1HZ75V', market: 'Volatility 75 (1s) Index', tag: 'Volatility' },
+    { symbol: 'BOOM500', market: 'Boom 500 Index', tag: 'Boom & Crash' },
+    { symbol: 'CRASH300', market: 'Crash 300 Index', tag: 'Boom & Crash' },
+    { symbol: 'stpRNG', market: 'Step Index', tag: 'Other' },
 ];
 
 const Dashboard = observer(() => {
@@ -41,13 +43,63 @@ const Dashboard = observer(() => {
     const [search, setSearch] = useState('');
     const [notice, setNotice] = useState('');
     const [showDisclaimer, setShowDisclaimer] = useState(false);
+    const [liveQuotes, setLiveQuotes] = useState<Record<string, number[]>>({});
+    const [feedStatus, setFeedStatus] = useState('Connecting to Deriv market data…');
+
+    // Use the existing Deriv socket; this only requests public market ticks.
+    useEffect(() => {
+        if (activeTab !== 'Dashboard') return;
+        let listener: { unsubscribe: () => void } | undefined;
+        let retry: ReturnType<typeof setTimeout> | undefined;
+        let stopped = false;
+        const ids = new Set<string>();
+        const connect = () => {
+            const api = api_base.api;
+            if (!api) { if (!stopped) retry = setTimeout(connect, 1000); return; }
+            setFeedStatus('Connected to Deriv · waiting for live ticks…');
+            listener = api.onMessage().subscribe((raw: unknown) => {
+                let msg: any = raw;
+                if (msg && typeof msg === 'object' && typeof (msg as any).data === 'string') {
+                    try { msg = JSON.parse((msg as any).data); } catch { return; }
+                }
+                if (msg?.msg_type !== 'tick' || !msg.tick?.symbol) return;
+                const symbol = String(msg.tick.symbol);
+                const quote = Number(msg.tick.quote);
+                if (!Number.isFinite(quote)) return;
+                if (msg.subscription?.id) ids.add(String(msg.subscription.id));
+                setLiveQuotes(old => ({ ...old, [symbol]: [...(old[symbol] || []), quote].slice(-24) }));
+                setFeedStatus('Live market data from Deriv');
+            });
+            SIGNAL_MARKETS.forEach(({ symbol }) => api.send({ ticks: symbol, subscribe: 1 }));
+        };
+        connect();
+        return () => {
+            stopped = true;
+            if (retry) clearTimeout(retry);
+            listener?.unsubscribe();
+            ids.forEach(id => api_base.api?.send({ forget: id }));
+        };
+    }, [activeTab]);
+
+    const liveSignals = useMemo(() => SIGNAL_MARKETS.map((market, index) => {
+        const prices = liveQuotes[market.symbol] || [];
+        if (prices.length < 4) return null;
+        const first = prices[0], latest = prices[prices.length - 1];
+        const changePct = first === 0 ? 0 : ((latest - first) / first) * 100;
+        return {
+            rank: index + 1, market: market.market, symbol: market.symbol,
+            contract: latest > first ? 'Upward momentum' : latest < first ? 'Downward momentum' : 'Sideways',
+            confidence: Math.min(99, Math.max(50, Math.round(50 + Math.abs(changePct) * 100))),
+            changePct, quote: latest, tag: market.tag,
+        };
+    }).filter(Boolean), [liveQuotes]);
 
     const filteredSignals = useMemo(
-        () => SIGNALS.filter(signal =>
+        () => liveSignals.filter((signal: any) =>
             (category === 'All' || signal.tag === category) &&
             signal.market.toLowerCase().includes(search.toLowerCase())
         ),
-        [category, search]
+        [category, search, liveSignals]
     );
 
     const openTab = (label: string) => {
@@ -84,7 +136,7 @@ const Dashboard = observer(() => {
                 .ot-panel-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
                 .ot-live-dot{width:14px;height:14px;background:#10b6aa;border-radius:50%;box-shadow:0 0 0 7px #10b6aa26;flex:0 0 auto}
                 .ot-panel h2{font-size:clamp(22px,4vw,30px);margin:0;letter-spacing:-.8px}
-                .ot-muted{color:#8b949a;margin:12px 0 22px}
+                .ot-muted{color:#8b949a;margin:12px 0 22px}.ot-feed-status{color:#a9c3c5;font-size:13px;margin:10px 0 18px}
                 .ot-signal{border:1px solid #51282d;border-radius:24px;padding:20px;margin:14px 0;background:#0d0f10;box-shadow:inset 0 0 0 1px #1c1516}
                 .ot-signal-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
                 .ot-rank{color:#e7b526;font-weight:900}
@@ -140,18 +192,19 @@ const Dashboard = observer(() => {
                         </div>
                         <section className='ot-panel'>
                             <div className='ot-panel-head'><span className='ot-live-dot' /><h2>Live Trading Signals</h2></div>
-                            <p className='ot-muted'>{filteredSignals.length} signal{filteredSignals.length === 1 ? '' : 's'} listed · For research only</p>
+                            <p className='ot-muted'>Live Deriv tick stream · Recent price momentum snapshots, not predictions.</p><p className='ot-feed-status' role='status'>{feedStatus}</p>
                             {filteredSignals.map(signal => (
                                 <article className='ot-signal' key={signal.rank}>
-                                    <div className='ot-signal-top'><span className='ot-rank'>#{signal.rank}</span><span className='ot-contract'>{signal.contract}</span></div>
+                                    <div className='ot-signal-top'><span className='ot-rank'>LIVE · {signal.symbol}</span><span className='ot-contract'>{signal.contract}</span></div>
                                     <h3>{signal.market}</h3>
-                                    <div className='ot-signal-foot'><span>Indicative score</span><strong>{signal.confidence}%</strong></div>
+                                    <div className='ot-signal-foot'><span>Latest quote: {Number(signal.quote).toLocaleString(undefined, { maximumFractionDigits: 5 })}</span><strong>{signal.changePct >= 0 ? '+' : ''}{signal.changePct.toFixed(4)}%</strong></div>
+                                    <div className='ot-signal-foot'><span>Momentum strength (not win probability)</span><strong>{signal.confidence}/99</strong></div>
                                     <div className='ot-meter'><span style={{ width: signal.confidence + '%' }} /></div>
                                 </article>
                             ))}
-                            {filteredSignals.length === 0 && <p className='ot-empty'>No matching markets. Try a different search or category.</p>}
+                            {filteredSignals.length === 0 && <p className='ot-empty'>{feedStatus.includes('Live') ? 'Waiting for enough live ticks to calculate a market snapshot. Unavailable symbols will remain blank.' : 'Connecting to Deriv. Live market snapshots will appear when the feed is available.'}</p>}
                             <button className='ot-disclaimer' onClick={() => setShowDisclaimer(value => !value)}>Risk Disclaimer {showDisclaimer ? '−' : '+'}</button>
-                            {showDisclaimer && <div className='ot-notice'>Trading involves substantial risk and you may lose your invested capital. These example signal cards are informational UI only, not verified live market data or a guarantee of results. Confirm all trades independently.</div>}
+                            {showDisclaimer && <div className='ot-notice'>Trading involves substantial risk and you may lose your invested capital. These snapshots are calculated from recent Deriv tick prices. They are informational only, not guaranteed predictions or personalized financial advice. Confirm all trades independently.</div>}
                         </section>
                         <div className='ot-bottom'><span style={{ color: '#a7b3b5', fontSize: 13 }}>Trading controls</span><button className='ot-run' onClick={() => setNotice('Select a supported bot or trading tool before running. No trade was placed.')}>▶ &nbsp; Run</button><span style={{ color: '#899497', fontSize: 12 }}>Execution: manual confirmation</span></div>
                     </>
@@ -168,7 +221,7 @@ const Dashboard = observer(() => {
                     </section>
                 )}
             </main>
-            <button className='ot-ai' aria-label='Open AI assistant' onClick={() => setNotice('AI assistant selected. Configure an AI provider to enable live responses.')}>AI</button>
+            {activeTab === 'Dashboard' && <button className='ot-ai' aria-label='Open AI assistant' onClick={() => setNotice('AI assistant selected. Configure an AI provider to enable live responses.')}>AI</button>}
             <div style={{ padding: '0 18px', textAlign: 'center', color: '#687478', fontSize: 11 }}>Signed-in session: {String(isAuthorized)} · OneMan Trade</div>
         </div>
     );
