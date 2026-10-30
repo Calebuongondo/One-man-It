@@ -173,7 +173,6 @@ const AppHeader = observer(() => {
                     return (
                         <div className='auth-actions'>
                             <div className='account-info'>
-                                <span className='novatrade-country-flag' aria-hidden='true'>🇺🇸</span>
                                 <AccountSwitcher activeAccount={activeAccount} />
                             </div>
                             <Button
