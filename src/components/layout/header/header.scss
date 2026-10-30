@@ -728,3 +728,30 @@
 .app-header {
     z-index: 100 !important;
 }
+
+
+/* Final tab visibility correction: keep dashboard tabs above the notice/header
+   layers, with an opaque theme surface so no red ticker layer can cover them. */
+.derivs-secondary-tabs {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2000 !important;
+    isolation: isolate !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: var(--general-main-1, #ffffff) !important;
+}
+.derivs-secondary-tabs > *,
+.derivs-secondary-tabs button,
+.derivs-secondary-tabs [role='tab'] {
+    position: relative !important;
+    z-index: 1 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.novatrade-market-ticker {
+    z-index: 1 !important;
+    background: var(--general-section-1, #f2f4f7) !important;
+    color: var(--text-general, #344054) !important;
+}
