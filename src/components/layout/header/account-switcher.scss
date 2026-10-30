@@ -825,3 +825,53 @@
     }
     .novatrade-account-mode-icon--real { font-size: 1.9rem; }
 }
+
+
+/* Keep the real/demo account menu readable and above clipped header layers. */
+.acc-info__wrapper {
+    position: relative;
+    z-index: 10000;
+}
+.acc-dropdown {
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 7.2rem) !important;
+    right: 1rem !important;
+    left: auto !important;
+    z-index: 100000 !important;
+    display: block !important;
+    width: min(32rem, calc(100vw - 2rem)) !important;
+    min-width: min(16rem, calc(100vw - 2rem)) !important;
+    max-height: calc(100dvh - 8.4rem) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    background: var(--general-main-1, #ffffff) !important;
+    color: var(--text-prominent, #101828) !important;
+    border: 1px solid var(--border-normal, #d0d5dd);
+    box-shadow: 0 12px 32px rgba(16, 24, 40, 0.22) !important;
+}
+.acc-dropdown__account {
+    min-height: 6.2rem;
+    background: var(--general-main-1, #ffffff) !important;
+    color: var(--text-prominent, #101828) !important;
+}
+.acc-dropdown__account-type,
+.acc-dropdown__balance,
+.acc-dropdown__account .deriv-text,
+.acc-dropdown__account .dc-text {
+    color: var(--text-prominent, #101828) !important;
+    opacity: 1 !important;
+}
+.acc-dropdown__account-type--virtual {
+    color: var(--text-profit-success, #12b76a) !important;
+}
+.acc-dropdown__account--selected {
+    background: var(--general-section-1, #f2f4f7) !important;
+}
+@media (max-width: 767px) {
+    .acc-dropdown {
+        top: calc(env(safe-area-inset-top, 0px) + 6.6rem) !important;
+        right: 0.7rem !important;
+        width: min(32rem, calc(100vw - 1.4rem)) !important;
+        max-height: calc(100dvh - 7.6rem) !important;
+    }
+}
