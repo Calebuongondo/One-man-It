@@ -98,17 +98,17 @@ const NovaTradeTool = ({ name }: NovaTradeToolProps) => {
         }
     };
     if (name === 'TradingView') {
-        return <section style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: '520px', width: '100%', background: '#ffffff', color: '#17212b' }} aria-label='Deriv TradingView chart'>
-            <h2 style={{ margin: '16px 20px 8px', fontSize: 22, color: '#17212b' }}>Deriv TradingView</h2>
-            <p style={{ margin: '0 20px 12px', color: '#475569' }}>Live market charts from Deriv. Sign in to Deriv if the chart requests it.</p>
-            <iframe title='Deriv TradingView market chart' src='https://charts.deriv.com/deriv?hide-signup=true' style={{ display: 'block', flex: '1 1 auto', width: '100%', minHeight: '480px', border: 0, background: '#ffffff' }} allow='clipboard-read; clipboard-write' />
-        </section>;
+        // Use Deriv's native SmartChart integration: it receives live symbols,
+        // quotes and chart state from the authenticated Deriv API connection.
+        return <div className='novatrade-tradingview-panel' aria-label='TradingView live Deriv chart'>
+            <ChartWrapper show_digits_stats={false} />
+        </div>;
     }
     const riskCalc = name === 'Risk Calculator';
     const bulk = name === 'Bulk Trader';
     const dual = name === 'Dual Edge';
     const analysis = name === 'Analysis Tool';
-    return <section style={panel} aria-label={name}>
+    return <section className={\`novatrade-tool novatrade-tool--\${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}\`} style={panel} aria-label={name}>
         <h2 style={{ margin: '4px 0 8px', fontSize: 24, lineHeight: 1.25, color: 'var(--text-prominent)' }}>{name}</h2>
         <p style={{ margin: '0 0 20px', lineHeight: 1.6, color: 'var(--text-general)' }}>
             {name === 'Trading Bots' ? 'Create and save a bot plan for review.' : bulk ? 'Calculate the combined stake for a batch.' : name === 'Pro AI' ? 'Build a disciplined, rules-based trading checklist.' : dual ? 'Compare risk and target scenarios.' : analysis ? 'Estimate trade expectancy from your assumptions.' : name === 'Copy Trading' ? 'Review a copy-trading safety checklist.' : riskCalc ? 'Calculate a per-trade risk budget.' : name === 'Manual Trader' ? 'Prepare a plan; live orders remain in broker controls.' : 'Use market notes alongside the integrated Charts workspace.'}
