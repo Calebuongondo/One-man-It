@@ -786,3 +786,42 @@
         }
     }
 }
+
+
+/* Account mode marker: real uses a circular US flag; demo uses a circular D. */
+.novatrade-account-mode-icon {
+    display: inline-flex;
+    flex: 0 0 2.8rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    border-radius: 50%;
+    box-sizing: border-box;
+    line-height: 1;
+    user-select: none;
+}
+
+.novatrade-account-mode-icon--real {
+    background: #fff;
+    font-size: 2.15rem;
+}
+
+.novatrade-account-mode-icon--demo {
+    background: #263b55;
+    border-color: #64748b;
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+@media (max-width: 767px) {
+    .novatrade-account-mode-icon {
+        flex-basis: 2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .novatrade-account-mode-icon--real { font-size: 1.9rem; }
+}
