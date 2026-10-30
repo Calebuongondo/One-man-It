@@ -458,3 +458,141 @@
         margin-inline-start: 0.4rem;
     }
 }
+
+
+/* OneMan Trade live market signals — dashboard only */
+.novatrade-live-signals {
+    width: min(100% - 3.2rem, 112rem);
+    margin: 2.4rem auto 3.2rem;
+    padding: 2rem;
+    border: 1px solid var(--border-normal, #d8e2e8);
+    border-radius: 1.6rem;
+    background: var(--general-section-1, #f5fbfa);
+    color: var(--text-prominent, #17212b);
+    box-sizing: border-box;
+}
+.novatrade-live-signals__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+}
+.novatrade-live-signals__heading h2 {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin: 0;
+    font-size: 2.2rem;
+    color: var(--text-prominent, #17212b);
+}
+.novatrade-live-signals__heading p {
+    margin: .6rem 0 0;
+    color: var(--text-general, #687782);
+    font-size: 1.3rem;
+}
+.novatrade-live-signals__dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #1aa99a;
+    box-shadow: 0 0 0 .4rem rgba(26,169,154,.12);
+}
+.novatrade-live-signals__status {
+    color: var(--text-general, #687782);
+    font-size: 1.2rem;
+}
+.novatrade-live-signals__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 1.2rem;
+}
+.novatrade-live-signals__card {
+    min-width: 0;
+    padding: 1.5rem;
+    border: 1px solid var(--border-normal, #dce4e8);
+    border-radius: 1.2rem;
+    background: var(--general-main-1, #fff);
+}
+.novatrade-live-signals__card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: .6rem;
+    color: var(--text-prominent, #17212b);
+}
+.novatrade-live-signals__card-top strong { font-size: 1.4rem; }
+.novatrade-live-signals__card-top span { color: var(--text-general, #687782); font-size: 1.1rem; }
+.novatrade-live-signals__quote {
+    margin-top: 1.4rem;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--text-prominent, #17212b);
+    overflow-wrap: anywhere;
+}
+.novatrade-live-signals__move { margin-top: .4rem; font-size: 1.3rem; font-weight: 700; }
+.novatrade-live-signals__move--up { color: #07865d; }
+.novatrade-live-signals__move--down { color: #c53b4b; }
+.novatrade-live-signals__move--flat { color: var(--text-general, #687782); }
+.novatrade-live-signals__card small {
+    display: block;
+    margin-top: 1rem;
+    color: var(--text-general, #687782);
+    font-size: 1.1rem;
+}
+.novatrade-live-signals__empty {
+    padding: 2rem;
+    border: 1px dashed var(--border-normal, #cbd6dc);
+    border-radius: 1rem;
+    color: var(--text-general, #687782);
+    background: var(--general-main-1, #fff);
+    text-align: center;
+    font-size: 1.3rem;
+}
+.novatrade-ai-fab {
+    position: fixed;
+    right: 2rem;
+    bottom: 8rem;
+    z-index: 900;
+    width: 6.4rem;
+    height: 6.4rem;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: linear-gradient(145deg, #8755ed, #5424b8);
+    box-shadow: 0 0 0 .7rem rgba(135,85,237,.18), 0 .8rem 2.4rem rgba(0,0,0,.28);
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+.novatrade-ai-panel {
+    position: fixed;
+    right: 2rem;
+    bottom: 15.5rem;
+    z-index: 901;
+    width: min(34rem, calc(100vw - 4rem));
+    padding: 2rem;
+    border: 1px solid var(--border-normal, #d5dce2);
+    border-radius: 1.4rem;
+    background: var(--general-main-1, #fff);
+    color: var(--text-general, #333);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.2);
+    font-size: 1.3rem;
+}
+.novatrade-ai-panel strong { color: var(--text-prominent, #111); font-size: 1.6rem; }
+.novatrade-ai-panel p { line-height: 1.5; }
+.novatrade-ai-panel__close {
+    float: right;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 2.4rem;
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .novatrade-live-signals { padding: 1.4rem; margin-top: 1.6rem; }
+    .novatrade-live-signals__heading h2 { font-size: 1.9rem; }
+    .novatrade-ai-fab { right: 1.4rem; bottom: 7.4rem; width: 5.6rem; height: 5.6rem; }
+}
