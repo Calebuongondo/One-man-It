@@ -633,3 +633,78 @@
     .app-header .novatrade-phone-action { color: #2196e3 !important; }
     .novatrade-market-ticker { color: #fff !important; background: #b91c1c !important; }
 }
+
+
+/* Restore the complete account toolbar on phones.
+   Keep each control at its natural width; if the screen is narrower than the
+   toolbar, allow horizontal scrolling rather than shrinking/hiding controls. */
+@media (max-width: 767px) {
+    .app-header {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 6.4rem !important;
+        min-height: 6.4rem !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        padding: 0 0.8rem !important;
+        gap: 0.8rem !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none !important;
+    }
+    .app-header::-webkit-scrollbar { display: none !important; }
+    .app-header .novatrade-topbar-left {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        gap: 0.65rem !important;
+        overflow: visible !important;
+    }
+    .app-header .novatrade-topbar-right {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        margin-inline-start: auto !important;
+        overflow: visible !important;
+    }
+    .app-header .auth-actions {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        gap: 0.65rem !important;
+    }
+    .app-header .account-info {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        overflow: visible !important;
+    }
+    .app-header .novatrade-country-flag,
+    .app-header .acc-info__balance,
+    .app-header .deriv-account-switcher__button,
+    .app-header .auth-actions button,
+    .app-header .novatrade-currency-chip,
+    .app-header .novatrade-phone-action {
+        flex: 0 0 auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    .app-header .deriv-account-switcher__button {
+        width: max-content !important;
+        min-width: max-content !important;
+    }
+    .app-header .auth-actions button {
+        min-width: 9.5rem !important;
+    }
+}
