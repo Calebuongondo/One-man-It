@@ -708,3 +708,23 @@
         min-width: 9.5rem !important;
     }
 }
+
+
+/* Visibility fixes: keep the account menu above dashboard tabs and remove the red ticker panel. */
+.novatrade-market-ticker {
+    background: var(--general-section-1, #f2f4f7) !important;
+    color: var(--text-general, #344054) !important;
+    border-block: 1px solid var(--border-normal, #d0d5dd);
+    z-index: 0 !important;
+}
+.novatrade-market-ticker__close {
+    background: var(--general-section-2, #eaecf0) !important;
+    color: var(--text-general, #344054) !important;
+}
+.derivs-secondary-tabs {
+    position: relative !important;
+    z-index: 30 !important;
+}
+.app-header {
+    z-index: 100 !important;
+}
