@@ -755,3 +755,33 @@
     background: var(--general-section-1, #f2f4f7) !important;
     color: var(--text-general, #344054) !important;
 }
+
+
+/* Remove the red strip behind the mobile workspace tabs.
+   Keep the tab labels and active indicator visible on a neutral surface. */
+.derivs-secondary-tabs,
+.derivs-secondary-tabs *,
+.dc-tabs,
+.dc-tabs__list,
+.dc-tabs__item,
+.dc-tabs__item--active,
+.deriv-tabs,
+.deriv-tabs__list,
+.deriv-tabs__item {
+    background-color: var(--general-main-1, #ffffff) !important;
+}
+.derivs-secondary-tabs,
+.dc-tabs,
+.deriv-tabs {
+    color: var(--text-general, #333333) !important;
+    border-color: var(--border-normal, #d6d6d6) !important;
+}
+.derivs-secondary-tabs [aria-selected='true'],
+.dc-tabs__item--active,
+.deriv-tabs__item--active {
+    color: var(--text-prominent, #111111) !important;
+    border-bottom: 3px solid var(--brand-red-coral, #00a79e) !important;
+}
+.novatrade-market-ticker {
+    display: none !important;
+}
