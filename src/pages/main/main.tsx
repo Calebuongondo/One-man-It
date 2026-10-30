@@ -453,7 +453,7 @@ const AppWrapper = observer(() => {
                     })}
                 >
                     <div>
-                        {!isDesktop && left_tab_shadow && <span className='tabs-shadow tabs-shadow--left' />}{' '}
+                        
                         <Tabs active_index={active_tab} className='main__tabs' onTabItemClick={handleTabChange} is_scrollable top>
                             <div
                                 label={
@@ -630,7 +630,7 @@ const AppWrapper = observer(() => {
                                 <NovaTradeTool name='TradingView' />
                             </div>
                         </Tabs>
-                        {!isDesktop && right_tab_shadow && <span className='tabs-shadow tabs-shadow--right' />}{' '}
+                        
                     </div>
                 </div>
             </div>
