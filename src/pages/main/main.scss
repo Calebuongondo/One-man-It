@@ -941,3 +941,65 @@
         background: #c91f32 !important;
     }
 }
+
+
+/* Correct mobile tab rendering.
+   The green bar was not the active indicator: it was the left-edge scroll
+   shadow rendered by main.tsx. Hide those decorative shadows on phones.
+   Tabs uses dc-tabs__item--is-scrollable-and-active (not --active). */
+@media (max-width: 767px) {
+    .main .tabs-shadow,
+    .main .tabs-shadow--left,
+    .main .tabs-shadow--right {
+        display: none !important;
+        visibility: hidden !important;
+        background: transparent !important;
+    }
+
+    .main .dc-tabs--main__tabs,
+    .main .dc-tabs--main__tabs .dc-tabs__list,
+    .main .dc-tabs__list--main__tabs {
+        background: #971b2b !important;
+        background-color: #971b2b !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .main .dc-tabs--main__tabs .dc-tabs__item,
+    .main .dc-tabs__list--main__tabs .dc-tabs__item {
+        background: #971b2b !important;
+        background-color: #971b2b !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .main .dc-tabs--main__tabs .dc-tabs__item *,
+    .main .dc-tabs__list--main__tabs .dc-tabs__item * {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+        opacity: 1 !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .main .dc-tabs--main__tabs .dc-tabs__item--is-scrollable-and-active,
+    .main .dc-tabs__list--main__tabs .dc-tabs__item--is-scrollable-and-active {
+        background: #c91f32 !important;
+        background-color: #c91f32 !important;
+        color: #ffffff !important;
+        box-shadow: inset 0 -3px 0 #ffd5da !important;
+    }
+
+    .main .dc-tabs--main__tabs .dc-tabs__item--is-scrollable-and-active *,
+    .main .dc-tabs__list--main__tabs .dc-tabs__item--is-scrollable-and-active * {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .main .dc-tabs--main__tabs .dc-tabs__active-line {
+        display: none !important;
+    }
+}
