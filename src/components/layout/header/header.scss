@@ -785,3 +785,57 @@
 .novatrade-market-ticker {
     display: none !important;
 }
+
+
+/* Restore the full mobile account toolbar: do not collapse the right-side
+   account details or action button when the header is viewed on a phone. */
+@media (max-width: 767px) {
+    .app-header {
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        min-height: 6.4rem !important;
+    }
+    .app-header .novatrade-topbar-left {
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+    }
+    .app-header .novatrade-topbar-right {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        margin-inline-start: 0 !important;
+        overflow: visible !important;
+    }
+    .app-header .novatrade-topbar-right .auth-actions {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+    }
+    .app-header .novatrade-topbar-right .account-info {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        justify-content: flex-start !important;
+        overflow: visible !important;
+    }
+    .app-header .novatrade-account-mode-icon,
+    .app-header .acc-info__balance,
+    .app-header .acc-info__select-arrow,
+    .app-header .novatrade-topbar-right .auth-actions button {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex: 0 0 auto !important;
+    }
+    .app-header .novatrade-topbar-right .auth-actions button {
+        min-width: 9.5rem !important;
+        white-space: nowrap !important;
+    }
+}
