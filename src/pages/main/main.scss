@@ -1053,3 +1053,43 @@
     fill: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
 }
+
+
+/* Surgical removal of the teal horizontal indicator visible over Dashboard.
+   Deriv Tabs can render the indicator as an inline child or a pseudo-element;
+   target all indicator/shadow variants inside this tab bar only. */
+.main [class*="active-line"],
+.main [class*="activeLine"],
+.main [class*="tabs-shadow"],
+.main [class*="tab-shadow"],
+.main [class*="scroll-shadow"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+.main .dc-tabs__list::before,
+.main .dc-tabs__list::after,
+.main .dc-tabs__item::before,
+.main .dc-tabs__item::after,
+.main [class*="dc-tabs"]::before,
+.main [class*="dc-tabs"]::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+.main .dc-tabs__list,
+.main .dc-tabs__item,
+.main .dc-tabs__item--is-scrollable-and-active,
+.main .dc-tabs__item--active,
+.main .dc-tabs__item[aria-selected="true"] {
+    box-shadow: none !important;
+    outline: 0 !important;
+    border-top: 0 !important;
+}
