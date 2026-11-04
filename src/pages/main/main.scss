@@ -1265,3 +1265,144 @@
         background-color: #164e63 !important;
     }
 }
+
+
+/* Definitive NovaTrade mobile workspace fix:
+   keep the complete tab bar in normal document flow, wrap all eight tabs
+   into visible rows, and ensure no ticker/overlay can paint over it. */
+.main {
+    position: relative !important;
+    overflow: visible !important;
+}
+.main__container {
+    position: relative !important;
+    isolation: isolate !important;
+    overflow: visible !important;
+}
+.main__container > .dc-tabs,
+.main .dc-tabs--main__tabs {
+    position: relative !important;
+    z-index: 20 !important;
+    isolation: isolate !important;
+    overflow: visible !important;
+}
+.main .dc-tabs__list,
+.main .dc-tabs__list--main__tabs,
+.main .dc-tabs__list--header--main__tabs {
+    position: relative !important;
+    z-index: 21 !important;
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #102b3f !important;
+    background-color: #102b3f !important;
+}
+.main .dc-tabs__list .dc-themed-scrollbars-wrapper {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #102b3f !important;
+}
+.main .dc-tabs__item,
+.main .dc-tabs__list .dc-tabs__item {
+    position: relative !important;
+    z-index: 22 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 1 auto !important;
+    min-width: max-content !important;
+    max-width: 100% !important;
+    min-height: 5.6rem !important;
+    height: auto !important;
+    padding: 0.8rem 1.4rem !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    background: #102b3f !important;
+    background-color: #102b3f !important;
+    color: #f8fafc !important;
+    -webkit-text-fill-color: #f8fafc !important;
+    opacity: 1 !important;
+}
+.main .dc-tabs__item *,
+.main .dc-tabs__item svg,
+.main .dc-tabs__item svg path {
+    color: #f8fafc !important;
+    fill: currentColor !important;
+    -webkit-text-fill-color: #f8fafc !important;
+    opacity: 1 !important;
+}
+.main .dc-tabs__item--is-scrollable-and-active,
+.main .dc-tabs__item--active,
+.main .dc-tabs__item[aria-selected="true"] {
+    background: #164e63 !important;
+    background-color: #164e63 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    box-shadow: inset 0 -3px 0 #2dd4bf !important;
+}
+.main .dc-tabs__item--is-scrollable-and-active *,
+.main .dc-tabs__item--active *,
+.main .dc-tabs__item[aria-selected="true"] * {
+    color: #ffffff !important;
+    fill: currentColor !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+.main .dc-tabs__active-line,
+.main .dc-tabs__item--is-scrollable-and-active::after,
+.main .tabs-shadow,
+.main .tabs-shadow--left,
+.main .tabs-shadow--right {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+@media (max-width: 767px) {
+    .main {
+        height: auto !important;
+        min-height: calc(100dvh - 12rem) !important;
+        overflow: visible !important;
+    }
+    .main__container {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+    .main .dc-tabs__list .dc-themed-scrollbars-wrapper {
+        flex-wrap: wrap !important;
+        overflow: visible !important;
+    }
+    .main .dc-tabs__item,
+    .main .dc-tabs__list .dc-tabs__item {
+        flex: 1 1 25% !important;
+        min-width: 25% !important;
+        max-width: 25% !important;
+        min-height: 5.8rem !important;
+        padding: 0.5rem 0.35rem !important;
+        white-space: normal !important;
+        text-align: center !important;
+        font-size: 1.15rem !important;
+        line-height: 1.25 !important;
+    }
+    .main .dc-tabs__item svg {
+        flex: 0 0 auto !important;
+        width: 1.8rem !important;
+        height: 1.8rem !important;
+        margin-inline-end: 0.35rem !important;
+    }
+    .main .dc-tabs__content {
+        position: relative !important;
+        z-index: 1 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+}
